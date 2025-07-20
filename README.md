@@ -1,84 +1,63 @@
 # Agent Chrome Extension 🤖
 
-A powerful Chrome extension that enables seamless chat interactions with AI agents through configurable webhooks. The extension provides a modern, responsive interface with advanced features like text selection integration, voice input, and customizable themes.
+> A powerful Chrome extension that enables seamless AI chat interactions through configurable webhooks with modern UI and advanced features.
 
-## 🏗️ System Architecture
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-blue?logo=google-chrome)](https://chrome.google.com/webstore)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](https://github.com/yourusername/agent-chrome-extension)
 
-### Core Components
+## ✨ Features
 
-#### 1. **Manifest Configuration** (`manifest.json`)
-- **Manifest Version**: 3 (Latest Chrome Extension standard)
-- **Permissions**: 
-  - `storage` - For saving user settings and chat history
-  - `sidePanel` - Modern side panel interface
-  - `activeTab` - Access to current tab content
-  - `contextMenus` - Right-click menu integration
-- **Host Permissions**: `<all_urls>` for webhook communication
+- 🎯 **Smart Text Selection** - Select text on any webpage and instantly chat with AI
+- 🎨 **Beautiful Themes** - Dark, Light, and Glass themes with customizable fonts
+- 🗣️ **Voice Input** - Speak your messages using Web Speech API
+- 📱 **Responsive Design** - Adapts perfectly to any side panel width
+- 🔗 **Multiple AI Services** - Configure multiple webhooks for different AI providers
+- 💾 **Persistent Sessions** - Your conversations are saved and restored
+- 🎭 **Markdown Support** - Rich text formatting in messages
+- ⚡ **Real-time Chat** - Instant responses with smooth animations
 
-#### 2. **Background Service Worker** (`background.js`)
-- Manages extension lifecycle and initialization
-- Handles context menu creation and interactions
-- Manages side panel behavior
-- Stores and retrieves selected text from web pages
-- Initializes default settings (webhooks, themes, etc.)
+## 🚀 Quick Start
 
-#### 3. **Content Script** (`content.js`)
-- Injected into all web pages
-- Handles text selection and double-click events
-- Creates floating "Add to Agent Chrome" button
-- Communicates with background script for text transfer
+### Installation
 
-#### 4. **Side Panel Interface** (`popup.html`, `popup.js`, `popup.css`)
-- Modern chat interface with responsive design
-- Real-time message rendering with markdown support
-- Settings management and webhook configuration
-- Voice input integration
-- File attachment capabilities
+1. **Download or Clone** this repository
+2. **Open Chrome** and navigate to `chrome://extensions/`
+3. **Enable Developer Mode** (toggle in top-right)
+4. **Click "Load unpacked"** and select the extension folder
+5. **Pin the extension** to your toolbar for easy access
 
-#### 5. **Options Page** (`options.html`, `options.js`, `options.css`)
-- Dedicated settings configuration page
-- Webhook management interface
-- Theme and appearance customization
+### Setup
 
-## 🔄 Process Flow
+1. **Click the extension icon** to open the side panel
+2. **Go to Settings** (gear icon)
+3. **Add your webhook URL** and give it a name
+4. **Choose your preferred theme** and font
+5. **Start chatting!** 🎉
 
-### 1. **Text Selection Workflow**
-```
-User selects text on webpage → Content script detects selection → 
-Floating button appears → User clicks button → Text sent to side panel → 
-Chat interface opens with pre-filled text
-```
+## 🎯 How to Use
 
-### 2. **Context Menu Integration**
-```
-User right-clicks selected text → "Add text to Agent Chrome" appears → 
-User clicks menu item → Background script stores text → 
-Side panel opens with selected text
-```
+### Text Selection Method
+1. **Select any text** on a webpage
+2. **Click the floating "Add to Agent Chrome" button** that appears
+3. **The side panel opens** with your selected text ready to discuss
 
-### 3. **Chat Message Flow**
-```
-User types message → Validation checks → Message sent to configured webhook → 
-Response received → Markdown parsing → Message displayed in chat → 
-History saved to local storage
-```
+### Context Menu Method
+1. **Right-click on selected text**
+2. **Choose "Add text to Agent Chrome"** from the context menu
+3. **Start your conversation** in the side panel
 
-### 4. **Session Management**
-```
-Extension loads → Generate/retrieve persistent session ID → 
-Load chat history → Restore previous conversation → 
-Continue seamless interaction
-```
+### Direct Chat
+1. **Click the extension icon** to open the side panel
+2. **Type your message** or use voice input
+3. **Get instant AI responses** with markdown formatting
 
-## ⚙️ Parameters & Configuration
+## 🛠️ Configuration
 
-### Webhook Configuration
-- **Webhook URL**: Primary endpoint for AI communication
-- **Webhook Name**: Display name for the current webhook
-- **Multiple Webhooks**: Support for multiple AI services
-- **Default Webhook**: Fallback webhook selection
+### Webhook Setup
 
-### Request Format
+Your webhook should accept POST requests with this format:
+
 ```json
 {
   "sessionId": "session_1234567890_abc123",
@@ -86,7 +65,8 @@ Continue seamless interaction
 }
 ```
 
-### Expected Response Format
+And respond with:
+
 ```json
 [
   {
@@ -95,164 +75,99 @@ Continue seamless interaction
 ]
 ```
 
-### Storage Parameters
-- **Chat History**: `chatHistory_{sessionId}`
-- **Webhooks**: `webhooks` object with name-URL pairs
-- **Settings**: Theme, font, default webhook preferences
-- **Session Data**: Persistent session ID and temporary text
+### Supported AI Services
 
-### Theme Options
-- **Dark Theme** (default): Professional dark interface
-- **Light Theme**: Clean light interface
-- **Glass Theme**: Modern glassmorphism effects with blur
+- OpenAI GPT models
+- Anthropic Claude
+- Google Gemini
+- Custom AI endpoints
+- Local AI servers
 
-### Font Families
-- Inter, Roboto, Poppins, Source Sans Pro
-- Open Sans, Lato, Nunito
-- **New additions**: Lexend, Outfit, Poiret One, Gabarito, Fugaz One, Playwrite VN, Caveat, Permanent Marker
+## 🎨 Customization
 
-## 🎨 Style & Design
+- **3 Beautiful Themes**: Dark (default), Light, Glass
+- **8+ Font Options**: Inter, Roboto, Poppins, Lexend, and more
+- **Responsive Layout**: Automatically adapts to panel width
+- **Custom Styling**: Modify CSS for your own look
 
-### Design Philosophy
-- **Modern Glassmorphism**: Transparent backgrounds with blur effects
-- **Responsive Layout**: Adapts to different side panel widths
-- **Accessibility**: High contrast ratios and keyboard navigation
-- **Smooth Animations**: CSS transitions and hover effects
+## 📚 Documentation
 
-### Key Design Features
+For detailed information, check out our comprehensive documentation:
 
-#### 1. **Responsive Webhook Indicator**
-- Dynamic text truncation based on available space
-- Breakpoints: 300px, 400px, 500px+ widths
-- Character limits: 5-40 characters depending on panel size
-- Real-time resize detection with ResizeObserver
+- 📖 **[Getting Started Guide](docs/getting-started.md)** - Complete setup and usage instructions
+- 🏗️ **[Architecture Overview](docs/architecture.md)** - Technical system design
+- 📁 **[File Structure](docs/file-structure.md)** - Understanding the codebase
+- 🔌 **[API Integration](docs/api.md)** - Webhook setup and examples
+- 🎨 **[Customization Guide](docs/customization.md)** - Themes and styling
+- 👨‍💻 **[Development Setup](docs/development.md)** - For contributors
+- 🐛 **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions
+- ❓ **[FAQ](docs/faq.md)** - Frequently asked questions
 
-#### 2. **Message Styling**
-- Fully rounded corners (25px border-radius)
-- Distinct user/assistant message alignment
-- Markdown rendering support (bold, italic, code, links, lists)
-- Enhanced shadows and visual depth
+## 🔧 Development
 
-#### 3. **Glass Theme Effects**
-```css
-background: rgba(255, 255, 255, 0.15);
-backdrop-filter: blur(10px);
-border: 1px solid rgba(255, 255, 255, 0.25);
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+### Prerequisites
+
+- Chrome browser (latest version)
+- Basic knowledge of HTML, CSS, JavaScript
+- Text editor or IDE
+
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/agent-chrome-extension.git
+   cd agent-chrome-extension
+   ```
+
+2. **Load in Chrome**
+   - Open `chrome://extensions/`
+   - Enable Developer Mode
+   - Click "Load unpacked" and select the project folder
+
+3. **Make changes** and reload the extension to test
+
+### Project Structure
+
 ```
-
-#### 4. **Responsive Breakpoints**
-- **Very Narrow** (<300px): Minimal UI, aggressive truncation
-- **Narrow** (300-400px): Compact layout
-- **Medium** (400-500px): Balanced design
-- **Wide** (>500px): Full feature display
-
-### CSS Architecture
-- **Base Styles**: Typography, colors, layout fundamentals
-- **Component Styles**: Modular styling for UI components
-- **Theme Variants**: Dark, light, and glass theme overrides
-- **Responsive Styles**: Media queries for different screen sizes
-- **Animation Styles**: Transitions and interactive effects
-
-## 🚀 Advanced Features
-
-### 1. **Voice Input Integration**
-- Web Speech API implementation
-- Real-time voice recognition
-- Visual feedback during recording
-- Automatic text insertion
-
-### 2. **File Attachment System**
-- File selection interface
-- Multiple file type support
-- Integration with chat workflow
-
-### 3. **Smart Text Processing**
-- Markdown parsing and rendering
-- Code syntax highlighting
-- Link detection and formatting
-- List and header formatting
-
-### 4. **Session Persistence**
-- Persistent session IDs across browser restarts
-- Chat history preservation
-- Settings synchronization
-- Cross-tab consistency
-
-### 5. **Dynamic UI Adaptation**
-- Real-time panel resize detection
-- Debounced update mechanisms (30-50ms)
-- Intelligent space allocation
-- Button visibility prioritization
-
-## 🛠️ Development & Maintenance
-
-### Code Quality Features
-- **Modular Architecture**: Separated concerns across files
-- **Error Handling**: Comprehensive try-catch blocks
-- **Logging**: Detailed console logging for debugging
-- **Performance**: Debounced events and optimized DOM operations
-
-### Browser Compatibility
-- Chrome Extension Manifest V3
-- Modern JavaScript (ES6+)
-- CSS Grid and Flexbox layouts
-- Web APIs: Storage, Speech, ResizeObserver
-
-### Security Considerations
-- Content Security Policy compliance
-- Secure webhook communication
-- Input sanitization
-- XSS prevention measures
-
-## 📦 Installation & Setup
-
-1. **Load Extension**: Chrome → Extensions → Developer mode → Load unpacked
-2. **Configure Webhook**: Click settings → Add webhook URL and name
-3. **Set Permissions**: Allow extension access to websites
-4. **Customize**: Choose theme, font, and preferences
-
-## 🔧 Configuration Examples
-
-### Basic Webhook Setup
-```javascript
-// Example webhook configuration
-const webhookConfig = {
-  name: "OpenAI GPT",
-  url: "https://api.example.com/chat",
-  default: true
-};
+├── manifest.json          # Extension configuration
+├── popup.html             # Main chat interface
+├── popup.js               # Chat functionality
+├── popup.css              # Styling and themes
+├── options.html           # Settings page
+├── options.js             # Settings functionality
+├── background.js          # Service worker
+├── content.js             # Web page integration
+├── assets/                # Icons and images
+└── docs/                  # Comprehensive documentation
 ```
-
-### Theme Customization
-```javascript
-// Apply glass theme
-chrome.storage.sync.set({ theme: 'glass' });
-
-// Set custom font
-chrome.storage.sync.set({ fontFamily: 'Lexend' });
-```
-
-## 📈 Performance Optimizations
-
-- **Debounced Resize Events**: 30-50ms delays prevent excessive updates
-- **Efficient DOM Manipulation**: Minimal reflows and repaints
-- **Smart Caching**: Settings and history cached in memory
-- **Lazy Loading**: Components loaded on demand
-- **Optimized Animations**: Hardware-accelerated CSS transitions
 
 ## 🤝 Contributing
 
-The extension follows modern web development practices with clean, maintainable code structure. Key areas for contribution:
+We welcome contributions! Please see our [Contributing Guide](docs/contributing.md) for details on:
 
-- **UI/UX Improvements**: Enhanced responsive design
-- **Performance Optimization**: Faster load times and smoother interactions
-- **Feature Extensions**: Additional AI service integrations
-- **Accessibility**: Screen reader support and keyboard navigation
-- **Testing**: Automated testing framework implementation
+- 🐛 **Bug Reports** - Help us improve
+- 💡 **Feature Requests** - Share your ideas
+- 🔧 **Code Contributions** - Submit pull requests
+- 📝 **Documentation** - Improve our guides
+- 🎨 **Design** - UI/UX enhancements
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- 📖 **Documentation**: Check our [comprehensive docs](docs/)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/yourusername/agent-chrome-extension/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/yourusername/agent-chrome-extension/discussions)
+- 📧 **Email**: support@agentchrome.com
+
+## 🎉 Acknowledgments
+
+- Built with modern Chrome Extension Manifest V3
+- Inspired by the need for seamless AI integration
+- Thanks to all contributors and users
 
 ---
 
-**Version**: 0.1.0  
-**License**: MIT  
-**Author**: Agent Chrome Development Team
+**Made with ❤️ by the Agent Chrome Team**
