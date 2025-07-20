@@ -3,7 +3,8 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+.Agent-UI
+.Agent-UI/
 # System files
 .DS_Store
 .DS_Store?
