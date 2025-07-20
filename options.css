@@ -1,0 +1,609 @@
+/* Dual Design System - Minimalist & Modern Well-Designed */
+
+/* ===== BASE STYLES ===== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+/* ===== MINIMALIST DESIGN (DEFAULT) ===== */
+body {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+body.light-theme {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: transparent;
+    padding: 40px;
+}
+
+h1 {
+    color: inherit;
+    margin: 0 0 40px 0;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.settings-section {
+    margin-bottom: 40px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.settings-section h2 {
+    color: inherit;
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.settings-section h3 {
+    color: inherit;
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #cccccc;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+body.light-theme label {
+    color: #666666;
+}
+
+input[type="text"],
+input[type="url"],
+select {
+    width: 100%;
+    padding: 12px 0;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #333333;
+    background-color: transparent;
+    color: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+body.light-theme input[type="text"],
+body.light-theme input[type="url"],
+body.light-theme select {
+    border-bottom: 1px solid #cccccc;
+}
+
+input[type="text"]:focus,
+input[type="url"]:focus,
+select:focus {
+    outline: none;
+    border-bottom: 1px solid #ffffff;
+}
+
+body.light-theme input[type="text"]:focus,
+body.light-theme input[type="url"]:focus,
+body.light-theme select:focus {
+    border-bottom: 1px solid #000000;
+}
+
+input[type="text"]::placeholder,
+input[type="url"]::placeholder {
+    color: #666666;
+}
+
+body.light-theme input[type="text"]::placeholder,
+body.light-theme input[type="url"]::placeholder {
+    color: #999999;
+}
+
+button {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+body.light-theme button {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #000000;
+}
+
+body.light-theme button:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+button.delete-btn,
+button.set-default-btn {
+    background-color: transparent;
+    color: inherit;
+    border: 1px solid;
+    padding: 8px 16px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+button.delete-btn:hover,
+button.set-default-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.light-theme button.delete-btn:hover,
+body.light-theme button.set-default-btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#webhook-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#webhook-list li {
+    background-color: transparent;
+    padding: 20px 0;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333333;
+}
+
+body.light-theme #webhook-list li {
+    border-bottom: 1px solid #cccccc;
+}
+
+#webhook-list li:hover {
+    background-color: #111111;
+}
+
+body.light-theme #webhook-list li:hover {
+    background-color: #f5f5f5;
+}
+
+#webhook-list .webhook-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+#webhook-list .webhook-name {
+    font-weight: 400;
+    color: inherit;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+#webhook-list .webhook-url-display {
+    font-size: 12px;
+    color: #cccccc;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+body.light-theme #webhook-list .webhook-url-display {
+    color: #666666;
+}
+
+#webhook-list .default-indicator {
+    color: inherit;
+    font-weight: 400;
+    margin-right: 20px;
+    font-size: 12px;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+}
+
+.webhook-actions {
+    display: flex;
+    gap: 0;
+    flex-shrink: 0;
+}
+
+.add-webhook-form {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    border-top: 1px solid #333333;
+    padding-top: 30px;
+}
+
+body.light-theme .add-webhook-form {
+    border-top: 1px solid #cccccc;
+}
+
+#save-settings-btn {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: 30px;
+    width: auto;
+    display: inline-block;
+}
+
+#save-settings-btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+body.light-theme #save-settings-btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #000000;
+}
+
+body.light-theme #save-settings-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#status-message {
+    text-align: left;
+    margin-top: 15px;
+    font-size: 12px;
+    min-height: 20px;
+    font-weight: 400;
+}
+
+/* ===== MODERN WELL-DESIGNED MODE ===== */
+body.modern-design {
+    background-color: #1E1E1E;
+    color: #E0E0E0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+body.modern-design.light-theme {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+body.modern-design .container {
+    max-width: 700px;
+    margin: 20px auto;
+    background-color: #2a2a2a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+body.modern-design.light-theme .container {
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef;
+}
+
+body.modern-design h1 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+body.modern-design.light-theme h1 {
+    color: #212529;
+}
+
+body.modern-design .settings-section {
+    margin-bottom: 30px;
+    padding: 24px;
+    background-color: #333333;
+    border-radius: 8px;
+    border: 1px solid #404040;
+    transition: all 0.2s ease;
+}
+
+body.modern-design.light-theme .settings-section {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+body.modern-design .settings-section:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+body.modern-design.light-theme .settings-section:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+}
+
+body.modern-design .settings-section h2 {
+    color: #4285f4;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+body.modern-design.light-theme .settings-section h2 {
+    color: #1a73e8;
+}
+
+body.modern-design .settings-section h3 {
+    color: #e0e0e0;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+body.modern-design.light-theme .settings-section h3 {
+    color: #495057;
+}
+
+body.modern-design label {
+    color: #b0b0b0;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+body.modern-design.light-theme label {
+    color: #6c757d;
+}
+
+body.modern-design input[type="text"],
+body.modern-design input[type="url"],
+body.modern-design select {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    border: 1px solid #555555;
+    background-color: #404040;
+    color: #e0e0e0;
+    font-size: 1em;
+    transition: all 0.2s ease;
+}
+
+body.modern-design.light-theme input[type="text"],
+body.modern-design.light-theme input[type="url"],
+body.modern-design.light-theme select {
+    border: 1px solid #ced4da;
+    background-color: #ffffff;
+    color: #495057;
+}
+
+body.modern-design input[type="text"]:focus,
+body.modern-design input[type="url"]:focus,
+body.modern-design select:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+}
+
+body.modern-design.light-theme input[type="text"]:focus,
+body.modern-design.light-theme input[type="url"]:focus,
+body.modern-design.light-theme select:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+body.modern-design input[type="text"]::placeholder,
+body.modern-design input[type="url"]::placeholder {
+    color: #888888;
+}
+
+body.modern-design.light-theme input[type="text"]::placeholder,
+body.modern-design.light-theme input[type="url"]::placeholder {
+    color: #6c757d;
+}
+
+body.modern-design button {
+    background-color: #4285f4;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1em;
+    transition: all 0.2s ease;
+}
+
+body.modern-design button:hover {
+    background-color: #1a73e8;
+    transform: translateY(-1px);
+}
+
+body.modern-design.light-theme button {
+    background-color: #1a73e8;
+}
+
+body.modern-design.light-theme button:hover {
+    background-color: #1557b0;
+}
+
+body.modern-design button.delete-btn {
+    background-color: #dc3545;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    margin-left: 8px;
+}
+
+body.modern-design button.delete-btn:hover {
+    background-color: #c82333;
+}
+
+body.modern-design button.set-default-btn {
+    background-color: #28a745;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    margin-left: 8px;
+}
+
+body.modern-design button.set-default-btn:hover {
+    background-color: #218838;
+}
+
+body.modern-design #webhook-list li {
+    background-color: #404040;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #555555;
+    transition: all 0.2s ease;
+}
+
+body.modern-design.light-theme #webhook-list li {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+body.modern-design #webhook-list li:hover {
+    background-color: #4a4a4a;
+    border-color: #666666;
+}
+
+body.modern-design.light-theme #webhook-list li:hover {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+}
+
+body.modern-design #webhook-list .webhook-name {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+    font-size: 1.1em;
+}
+
+body.modern-design.light-theme #webhook-list .webhook-name {
+    color: #212529;
+}
+
+body.modern-design #webhook-list .webhook-url-display {
+    font-size: 0.9em;
+    color: #b0b0b0;
+}
+
+body.modern-design.light-theme #webhook-list .webhook-url-display {
+    color: #6c757d;
+}
+
+body.modern-design #webhook-list .default-indicator {
+    color: #28a745;
+    font-weight: 600;
+    margin-right: 12px;
+    font-size: 0.9em;
+    background-color: rgba(40, 167, 69, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+body.modern-design.light-theme #webhook-list .default-indicator {
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+body.modern-design .webhook-actions {
+    gap: 8px;
+}
+
+body.modern-design .add-webhook-form {
+    background-color: #383838;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #555555;
+}
+
+body.modern-design.light-theme .add-webhook-form {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+body.modern-design #save-settings-btn {
+    background-color: #4285f4;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 30px;
+    width: 100%;
+    display: block;
+}
+
+body.modern-design #save-settings-btn:hover {
+    background-color: #1a73e8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+body.modern-design.light-theme #save-settings-btn {
+    background-color: #1a73e8;
+}
+
+body.modern-design.light-theme #save-settings-btn:hover {
+    background-color: #1557b0;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+body.modern-design #status-message {
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+body.modern-design #status-message.success {
+    color: #28a745;
+}
+
+body.modern-design #status-message.error {
+    color: #dc3545;
+}
+
+/* Text size variations */
+body.text-small {
+    font-size: 0.9em;
+}
+
+body.text-medium {
+    font-size: 1em;
+}
+
+body.text-large {
+    font-size: 1.1em;
+}
+
+body.modern-design.text-large {
+    font-size: 1.2em;
+}

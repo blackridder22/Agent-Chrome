@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Extension Design Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .feature {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        .feature h3 {
+            color: #4a5568;
+            margin-top: 0;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .checkmark {
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .demo-section {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .glass-demo {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+            color: #333;
+        }
+        .rounded-demo {
+            background: #4299e1;
+            color: white;
+            padding: 15px;
+            border-radius: 25px;
+            margin: 10px 0;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+        }
+        .responsive-demo {
+            background: #48bb78;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(72, 187, 120, 0.3);
+            transition: all 0.3s ease;
+        }
+        .font-demo {
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-roboto { font-family: 'Roboto', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Chrome Extension Design Improvements</h1>
+        
+        <div class="feature">
+            <h3>✅ Completed Design Enhancements</h3>
+            <ul class="feature-list">
+                <li><span class="checkmark">✓</span>Responsive webhook indicator that adapts to side panel size</li>
+                <li><span class="checkmark">✓</span>Fully rounded corners (25px border-radius) for message boxes</li>
+                <li><span class="checkmark">✓</span>New glass/blur theme with transparent backgrounds</li>
+                <li><span class="checkmark">✓</span>Multiple font family options (8 different fonts)</li>
+                <li><span class="checkmark">✓</span>Enhanced visual effects with shadows and transitions</li>
+            </ul>
+        </div>
+
+        <div class="demo-section">
+            <h3>🔍 Design Previews</h3>
+            
+            <h4>Responsive Webhook Indicator:</h4>
+            <div class="responsive-demo">Default Webhook</div>
+            <div class="responsive-demo">My Custom Assistant</div>
+            <div class="responsive-demo">Very Long Webhook Name...</div>
+            
+            <h4>Fully Rounded Message Boxes:</h4>
+            <div class="rounded-demo">
+                This is how assistant messages will look with the new fully rounded corners and enhanced shadows.
+            </div>
+            
+            <h4>Glass Theme Effect:</h4>
+            <div class="glass-demo">
+                This demonstrates the new glass theme with blur effects and transparency.
+            </div>
+            
+            <h4>Font Family Options:</h4>
+            <div class="font-demo font-inter">Inter Font: Clean and modern typeface</div>
+            <div class="font-demo font-roboto">Roboto Font: Google's signature font</div>
+            <div class="font-demo font-poppins">Poppins Font: Geometric and friendly</div>
+        </div>
+
+        <div class="feature">
+            <h3>🚀 How to Test</h3>
+            <ol>
+                <li>Open the Chrome extension</li>
+                <li>Go to Settings to try different themes and fonts</li>
+                <li>Test the glass theme for a modern blur effect</li>
+                <li>Resize the side panel to see responsive webhook indicator</li>
+                <li>Send messages to see the new rounded message boxes</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

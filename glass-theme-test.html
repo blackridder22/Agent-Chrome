@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Glass Theme Test</title>
+    <link rel="stylesheet" href="popup.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .demo-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .theme-selector {
+            padding: 20px;
+            background: #f5f5f5;
+            text-align: center;
+        }
+        
+        .theme-btn {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .theme-btn.active {
+            background: #007bff;
+            color: white;
+        }
+        
+        .popup-demo {
+            height: 500px;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="glass-theme">
+    <!-- Background toggle button -->
+    <button class="bg-toggle-btn" id="bgToggle">
+        <div class="bg-toggle-indicator"></div>
+        <span>Background FX</span>
+    </button>
+    <div class="demo-container">
+        <div class="theme-selector">
+            <h3>Enhanced Glass Theme Demo</h3>
+            <button class="theme-btn" onclick="setTheme('')">Default</button>
+            <button class="theme-btn" onclick="setTheme('light-theme')">Light</button>
+            <button class="theme-btn active" onclick="setTheme('glass-theme')">Glass (Enhanced)</button>
+        </div>
+        
+        <div class="popup-demo glass-theme" id="popup-demo">
+            <div class="chat-header">
+                <div>
+                    <button class="icon-btn" style="margin-right: 8px;" title="Settings">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" title="History">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="webhook-indicator">Enhanced Glass Theme</div>
+                <button id="new-chat-btn">+ New</button>
+            </div>
+            
+            <div class="chat-area">
+                <div class="message assistant-message">
+                    <div class="message-content">
+                        <p>This is an assistant message with enhanced shadows and black text for better readability in the glass theme.</p>
+                        <pre><code>console.log('Code blocks are now readable!');</code></pre>
+                    </div>
+                </div>
+                
+                <div class="message user-message">
+                    <div class="message-content">
+                        <p>This is a user message with the new glass effect and improved contrast.</p>
+                    </div>
+                </div>
+                
+                <div class="typing-indicator">
+                    <span>Assistant is typing...</span>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <button class="attach-file-btn" style="margin-right: 8px;" title="Attach file">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                    </svg>
+                </button>
+                <input type="text" id="chat-input" placeholder="Type your message with black text..." value="Sample typing text in black">
+                <button class="voice-btn" style="margin: 0 4px;" title="Voice input">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <path d="M12 19v4"/>
+                        <path d="M8 23h8"/>
+                    </svg>
+                </button>
+                <button class="send-btn" title="Send message">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M22 2L11 13"/>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="settings-panel">
+                <div class="parameter-section-header">Configuration Settings</div>
+                
+                <div class="parameter-group">
+                    <div class="parameter">
+                        <label for="api-key">API Key:</label>
+                        <input type="text" id="api-key" placeholder="Enter your API key...">
+                    </div>
+                    
+                    <div class="parameter">
+                        <label for="model-select">AI Model:</label>
+                        <select id="model-select">
+                            <option>GPT-4 Turbo</option>
+                            <option>GPT-3.5 Turbo</option>
+                            <option>Claude 3 Sonnet</option>
+                            <option>Gemini Pro</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="parameter-group">
+                    <div class="parameter">
+                        <label for="temperature">Temperature:</label>
+                        <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.7">
+                        <span class="range-value">0.7</span>
+                    </div>
+                    
+                    <div class="parameter">
+                        <label for="max-tokens">Max Tokens:</label>
+                        <input type="number" id="max-tokens" placeholder="2048" value="2048">
+                    </div>
+                </div>
+                
+                <div class="parameter">
+                    <label for="system-prompt">System Prompt:</label>
+                    <textarea id="system-prompt" rows="3" placeholder="You are a helpful AI assistant..."></textarea>
+                </div>
+                
+                <div class="parameter-section-header">Advanced Options</div>
+                
+                <div class="parameter-group">
+                    <div class="parameter">
+                        <label for="webhook-url">Webhook URL:</label>
+                        <input type="url" id="webhook-url" placeholder="https://your-webhook.com/api">
+                    </div>
+                    
+                    <div class="parameter">
+                        <label for="timeout">Timeout (seconds):</label>
+                        <input type="number" id="timeout" placeholder="30" value="30">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Modal Demo -->
+    <div class="history-modal" id="history-modal" style="display: flex;">
+        <div class="history-content">
+            <div class="history-header">
+                <h2>Conversation History</h2>
+                <button class="close-history-btn" onclick="closeHistoryModal()">&times;</button>
+            </div>
+            <div class="history-list">
+                <div class="history-item current-session">
+                    <div class="history-content">
+                        <div class="history-date">Today, 2:30 PM</div>
+                        <div class="history-preview">Current conversation about glass theme design</div>
+                        <div class="history-info">12 messages</div>
+                    </div>
+                    <button class="delete-chat-btn" title="Delete conversation">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="history-item">
+                    <div class="history-content">
+                        <div class="history-date">Yesterday, 4:15 PM</div>
+                        <div class="history-preview">Discussion about Chrome extension features</div>
+                        <div class="history-info">8 messages</div>
+                    </div>
+                    <button class="delete-chat-btn" title="Delete conversation">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="history-item">
+                    <div class="history-content">
+                        <div class="history-date">Dec 15, 10:22 AM</div>
+                        <div class="history-preview">Help with JavaScript debugging</div>
+                        <div class="history-info">15 messages</div>
+                    </div>
+                    <button class="delete-chat-btn" title="Delete conversation">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            const demo = document.getElementById('popup-demo');
+            const modal = document.getElementById('history-modal');
+            const buttons = document.querySelectorAll('.theme-btn');
+            
+            // Remove all theme classes
+            demo.className = 'popup-demo';
+            modal.className = 'history-modal';
+            
+            // Add selected theme
+            if (theme) {
+                demo.classList.add(theme);
+                modal.classList.add(theme);
+            }
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function closeHistoryModal() {
+            document.getElementById('history-modal').style.display = 'none';
+        }
+        
+        function showHistoryModal() {
+            document.getElementById('history-modal').style.display = 'flex';
+        }
+        
+        // Add click handler to history button
+        document.addEventListener('DOMContentLoaded', function() {
+            const historyBtn = document.querySelector('[title="History"]');
+            if (historyBtn) {
+                historyBtn.addEventListener('click', showHistoryModal);
+            }
+            
+            // Update range slider value display
+            const temperatureSlider = document.getElementById('temperature');
+            const rangeValue = document.querySelector('.range-value');
+            
+            if (temperatureSlider && rangeValue) {
+                temperatureSlider.addEventListener('input', function() {
+                    rangeValue.textContent = this.value;
+                });
+            }
+            
+            // Background toggle functionality
+            const bgToggle = document.getElementById('bgToggle');
+            const body = document.body;
+            let isAnimated = false;
+            
+            bgToggle.addEventListener('click', function() {
+                isAnimated = !isAnimated;
+                
+                if (isAnimated) {
+                    body.classList.add('animated-bg');
+                    bgToggle.classList.add('active');
+                } else {
+                    body.classList.remove('animated-bg');
+                    bgToggle.classList.remove('active');
+                }
+            });
+            
+            // Optional: Auto-enable animation on load for demo
+            // setTimeout(() => {
+            //     bgToggle.click();
+            // }, 1000);
+        });
+        
+        // Set initial theme
+        document.getElementById('popup-demo').classList.add('glass-theme');
+        document.getElementById('history-modal').classList.add('glass-theme');
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  agent-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4750:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    container_name: agent-ui-app
+    volumes:
+      - agent-ui-data:/usr/share/nginx/html/data
+    networks:
+      - agent-network
+
+networks:
+  agent-network:
+    driver: bridge
+
+volumes:
+  agent-ui-data:
+    driver: local

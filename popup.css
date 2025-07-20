@@ -1,0 +1,2665 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: #1E1E1E; /* Dark background */
+    color: #E0E0E0; /* Light text */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Light theme */
+body.light-theme {
+    background-color: #F5F5F5;
+    color: #333333;
+}
+
+/* Glass theme */
+body.glass-theme {
+    background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(10, 10, 20, 0.98));
+    -webkit-backdrop-filter: blur(795px);
+    backdrop-filter: blur(665px);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated background effects for glass theme */
+body.glass-theme.animated-bg::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+    animation: backgroundFloat 20s ease-in-out infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+body.glass-theme.animated-bg::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 60% 70%, rgba(253, 216, 53, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 30% 30%, rgba(79, 172, 254, 0.1) 0%, transparent 50%);
+    animation: backgroundPulse 15s ease-in-out infinite alternate;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes backgroundFloat {
+    0%, 100% {
+        transform: translate(0px, 0px) rotate(0deg);
+    }
+    33% {
+        transform: translate(30px, -30px) rotate(120deg);
+    }
+    66% {
+        transform: translate(-20px, 20px) rotate(240deg);
+    }
+}
+
+@keyframes backgroundPulse {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+}
+
+/* Background toggle button */
+.bg-toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bg-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+}
+
+.bg-toggle-btn.active {
+    background: linear-gradient(145deg, rgba(253, 216, 53, 0.3), rgba(253, 216, 53, 0.2));
+    border-color: rgba(253, 216, 53, 0.5);
+    color: rgba(253, 216, 53, 1);
+    box-shadow: 0 8px 32px rgba(253, 216, 53, 0.2);
+}
+
+.bg-toggle-btn.active:hover {
+    box-shadow: 0 12px 40px rgba(253, 216, 53, 0.3);
+}
+
+.bg-toggle-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+}
+
+.bg-toggle-btn.active .bg-toggle-indicator {
+    background: rgba(253, 216, 53, 0.9);
+    box-shadow: 0 0 8px rgba(253, 216, 53, 0.5);
+}
+
+body.glass-theme .chat-header {
+    background: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+body.glass-theme .chat-input-area {
+    background: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3), 0 -4px 16px rgba(0, 0, 0, 0.2);
+}
+
+body.glass-theme #chat-input {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #000000;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), inset 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.glass-theme #chat-input::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+body.glass-theme .typing-indicator {
+    background: rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #000000;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25), 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure all text in glass theme message content is black */
+body.glass-theme .message-content p,
+body.glass-theme .message-content span,
+body.glass-theme .message-content div {
+    color: #000000;
+}
+
+/* Ensure code blocks and pre elements are also readable */
+body.glass-theme .message-content pre,
+body.glass-theme .message-content code {
+    background: rgba(0, 0, 0, 0.1);
+    color: #000000;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Glass theme for voice button */
+body.glass-theme .voice-btn {
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25), 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.glass-theme .voice-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass theme for send button */
+body.glass-theme .send-btn {
+    background: rgba(79, 172, 254, 0.3);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    color: #ffffff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25), 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.glass-theme .send-btn:hover {
+    background: rgba(79, 172, 254, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass theme for icon buttons (settings, history) */
+body.glass-theme .icon-btn {
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25), 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.glass-theme .icon-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass theme for new chat button */
+body.glass-theme #new-chat-btn {
+    background: rgba(72, 187, 120, 0.3);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(72, 187, 120, 0.4);
+    color: #ffffff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25), 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.glass-theme #new-chat-btn:hover {
+    background: rgba(72, 187, 120, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass theme for attach file button */
+body.glass-theme .attach-file-btn {
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25), 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.glass-theme .attach-file-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Modern Glass theme for parameters/settings */
+body.glass-theme .parameter,
+body.glass-theme .settings-panel {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #000000;
+    border-radius: 16px;
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.35),
+        0 6px 20px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 16px 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.glass-theme .parameter::before,
+body.glass-theme .settings-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    z-index: 1;
+}
+
+body.glass-theme .parameter:hover,
+body.glass-theme .settings-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 16px 50px rgba(0, 0, 0, 0.4),
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Parameter labels with enhanced styling */
+body.glass-theme .parameter label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+body.glass-theme .parameter label::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(253, 216, 53, 0.8), transparent);
+    border-radius: 1px;
+}
+
+/* Enhanced Glass theme for parameter inputs */
+body.glass-theme .parameter input,
+body.glass-theme .parameter select,
+body.glass-theme .parameter textarea {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    color: #000000;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.95em;
+    font-weight: 500;
+    width: calc(100% - 34px);
+    margin-bottom: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+body.glass-theme .parameter input:focus,
+body.glass-theme .parameter select:focus,
+body.glass-theme .parameter textarea:focus {
+    outline: none;
+    border-color: rgba(253, 216, 53, 0.6);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.08),
+        0 4px 16px rgba(253, 216, 53, 0.2),
+        0 0 0 3px rgba(253, 216, 53, 0.1);
+    transform: translateY(-1px);
+}
+
+body.glass-theme .parameter input::placeholder,
+body.glass-theme .parameter textarea::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* Parameter group styling */
+body.glass-theme .parameter-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Parameter section headers */
+body.glass-theme .parameter-section-header {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.9);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(253, 216, 53, 0.3);
+    position: relative;
+}
+
+body.glass-theme .parameter-section-header::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(253, 216, 53, 0.8), rgba(253, 216, 53, 0.4));
+    border-radius: 1px;
+}
+
+/* Range input styling */
+body.glass-theme .parameter input[type="range"] {
+    width: calc(100% - 60px);
+    height: 6px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+    border-radius: 3px;
+    outline: none;
+    margin-bottom: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+body.glass-theme .parameter input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(145deg, rgba(253, 216, 53, 0.9), rgba(253, 216, 53, 0.7));
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(253, 216, 53, 0.3);
+    transition: all 0.2s ease;
+}
+
+body.glass-theme .parameter input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(253, 216, 53, 0.4);
+}
+
+body.glass-theme .parameter input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(145deg, rgba(253, 216, 53, 0.9), rgba(253, 216, 53, 0.7));
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(253, 216, 53, 0.3);
+}
+
+/* Range value display */
+body.glass-theme .parameter .range-value {
+    display: inline-block;
+    background: linear-gradient(145deg, rgba(253, 216, 53, 0.2), rgba(253, 216, 53, 0.1));
+    color: rgba(0, 0, 0, 0.8);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-left: 8px;
+    min-width: 30px;
+    text-align: center;
+    border: 1px solid rgba(253, 216, 53, 0.3);
+}
+
+/* Number input styling */
+body.glass-theme .parameter input[type="number"] {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    color: #000000;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.95em;
+    font-weight: 500;
+    width: calc(100% - 34px);
+    margin-bottom: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.glass-theme .parameter input[type="number"]:focus {
+    outline: none;
+    border-color: rgba(253, 216, 53, 0.6);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.08),
+        0 4px 16px rgba(253, 216, 53, 0.2),
+        0 0 0 3px rgba(253, 216, 53, 0.1);
+    transform: translateY(-1px);
+}
+
+/* URL input styling */
+body.glass-theme .parameter input[type="url"] {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    color: #000000;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.95em;
+    font-weight: 500;
+    width: calc(100% - 34px);
+    margin-bottom: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.glass-theme .parameter input[type="url"]:focus {
+    outline: none;
+    border-color: rgba(253, 216, 53, 0.6);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.08),
+        0 4px 16px rgba(253, 216, 53, 0.2),
+        0 0 0 3px rgba(253, 216, 53, 0.1);
+    transform: translateY(-1px);
+}
+
+body.glass-theme .parameter input[type="url"]::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    font-weight: 400;
+}
+
+body.glass-theme .assistant-message .message-content {
+    background: rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #000000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 2px 8px rgba(255, 255, 255, 0.15);
+}
+
+body.glass-theme .user-message .message-content {
+    background: rgba(255, 255, 255, 0.18);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #000000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 2px 8px rgba(255, 255, 255, 0.15);
+}
+
+body.glass-theme .webhook-indicator {
+    background: rgba(72, 187, 120, 0.25);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(72, 187, 120, 0.4);
+    color: #ffffff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25), 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Text size variations */
+body.text-small {
+    font-size: 0.9em;
+}
+
+body.text-medium {
+    font-size: 1em;
+}
+
+body.text-large {
+    font-size: 1.2em;
+}
+
+/* Font family variations */
+body.font-system {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body.font-inter {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body.font-roboto {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+body.font-poppins {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body.font-source-sans {
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body.font-open-sans {
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body.font-lato {
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body.font-nunito {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: #252526;
+    border-bottom: 1px solid #333333;
+    flex-shrink: 0;
+}
+
+/* Light theme header */
+body.light-theme .chat-header {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+body.light-theme .chat-header h1 {
+    color: #333333;
+}
+
+.chat-header h1 {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.icon-btn img {
+    width: 20px;
+    height: 20px;
+    filter: invert(90%) sepia(10%) saturate(0%) hue-rotate(180deg) brightness(150%) contrast(80%); /* Adjust for light icons on dark bg */
+}
+
+body.light-theme .icon-btn img {
+    filter: invert(20%) sepia(10%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(80%); /* Adjust for dark icons on light bg */
+}
+
+#new-chat-btn {
+    background-color: #FDD835; /* Yellow button */
+    color: #1E1E1E; /* Dark text on yellow */
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+#new-chat-btn:hover {
+    background-color: #FBC02D;
+}
+
+.chat-area {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 10px;
+    max-width: 80%;
+    align-items: flex-end;
+}
+
+.message .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.message-content {
+    padding: 10px 14px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    line-height: 1.3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+/* Markdown styles */
+.message-content a {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+.message-content code {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.message-content h1, 
+.message-content h2, 
+.message-content h3 {
+    margin: 5px 0;
+    font-weight: 600;
+}
+
+.message-content h1 {
+    font-size: 1.4em;
+}
+
+.message-content h2 {
+    font-size: 1.2em;
+}
+
+.message-content h3 {
+    font-size: 1.1em;
+}
+
+.message-content li {
+    margin-left: 20px;
+}
+
+.message-content p {
+    margin: 5px 0;
+}
+
+.assistant-message {
+    align-self: flex-start;
+}
+
+.assistant-message .message-content {
+    background-color: #333333;
+    color: #E0E0E0;
+    border-radius: 25px;
+}
+
+body.light-theme .assistant-message .message-content {
+    background-color: #E9E9E9;
+    color: #333333;
+}
+
+.assistant-message .avatar {
+    order: -1; /* Avatar on the left */
+}
+
+.user-message {
+    align-self: flex-end;
+}
+
+.user-message .message-content {
+    background-color: #FDD835;
+    color: #1E1E1E;
+    border-radius: 25px;
+}
+
+body.light-theme .user-message .message-content {
+    background-color: #FEE684; /* Lighter yellow for light theme */
+    color: #333333;
+}
+
+.chat-input-area {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #252526;
+    border-top: 1px solid #333333;
+    flex-shrink: 0;
+}
+
+/* Attach file button */
+.attach-file-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    position: relative;
+}
+
+.attach-file-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.attach-file-btn .material-symbols-outlined {
+    color: #A09D87;
+    font-size: 24px;
+    transition: color 0.2s ease;
+}
+
+.attach-file-btn:hover .material-symbols-outlined {
+    color: #FFFFFF;
+}
+
+/* File count indicator */
+.file-count-indicator {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: #FDD835;
+    color: #1E1E1E;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 16px;
+}
+
+/* Attached files container */
+.attached-files-container {
+    padding: 8px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* File ticket styling */
+.file-ticket {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    max-width: 200px;
+    transition: all 0.2s ease;
+}
+
+.file-ticket:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.file-ticket-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+}
+
+.file-ticket .file-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.file-ticket .file-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.file-ticket .file-name {
+    font-size: 0.8em;
+    font-weight: 500;
+    color: #E0E0E0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+
+.file-ticket .file-size {
+    font-size: 0.7em;
+    color: #888;
+}
+
+.remove-file-btn {
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.remove-file-btn:hover {
+    background-color: rgba(255, 107, 107, 0.2);
+    color: #ff5252;
+    transform: scale(1.1);
+}
+
+/* Light theme styles for file tickets */
+body.light-theme .attached-files-container {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .file-ticket {
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .file-ticket:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+body.light-theme .file-ticket .file-name {
+    color: #333333;
+}
+
+body.light-theme .file-ticket .file-size {
+    color: #666666;
+}
+
+/* Light theme styles */
+body.light-theme .attach-file-btn .material-symbols-outlined {
+    color: #333333;
+}
+
+body.light-theme .attach-file-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .attach-file-btn:hover .material-symbols-outlined {
+    color: #000000;
+}
+
+/* Send button */
+.send-btn {
+    background-color: #FDD835;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+}
+
+.send-btn:hover {
+    background-color: #FBC02D;
+    transform: scale(1.05);
+}
+
+.send-btn svg {
+    color: #1E1E1E;
+    transition: color 0.2s ease;
+}
+
+body.light-theme .send-btn {
+    background-color: #FDD835;
+}
+
+body.light-theme .send-btn:hover {
+    background-color: #FBC02D;
+}
+
+body.light-theme .send-btn svg {
+    color: #1E1E1E;
+}
+
+body.light-theme .chat-input-area {
+    background-color: #FFFFFF;
+    border-top: 1px solid #DDDDDD;
+}
+
+#chat-input {
+    flex: 1;
+    background-color: #333333;
+    border: 1px solid #444444;
+    border-radius: 18px;
+    padding: 8px 12px;
+    color: #E0E0E0;
+    font-size: 0.9em;
+    margin: 0 6px;
+    resize: none;
+    max-height: 80px;
+    min-height: 36px;
+    min-width: 120px;
+    overflow-y: auto;
+    line-height: 1.3;
+    font-family: inherit;
+}
+
+body.light-theme #chat-input {
+    background-color: #F0F0F0;
+    border: 1px solid #DDDDDD;
+    color: #333333;
+}
+
+#chat-input::placeholder {
+    color: #777777;
+}
+
+
+
+/* Welcome message styling */
+.welcome-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #888;
+    font-size: 1.1em;
+    pointer-events: none;
+}
+
+/* Typing indicator with shimmer effect */
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.typing-indicator {
+    display: inline-block;
+    color: #888;
+    font-style: italic;
+    background: linear-gradient(90deg, #888 0%, #fff 50%, #888 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2s infinite;
+    border-radius: 0;
+    padding: 8px 12px;
+    margin: 10px 0;
+}
+
+/* Scrollbar styling (optional, for a more polished look) */
+.chat-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-area::-webkit-scrollbar-track {
+    background: #252526;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+    background: #555555;
+    border-radius: 3px;
+}
+
+.chat-area::-webkit-scrollbar-thumb:hover {
+    background: #777777;
+}
+
+/* Settings Panel and History Modal (Shared Modal Styles) - Simplified */
+.settings-panel,
+.history-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.settings-content,
+.history-content {
+    background-color: #2D2D2D;
+    padding: 20px;
+    border-radius: 0; /* Removed rounded corners */
+    width: 80%;
+    max-width: 500px;
+    box-shadow: none; /* Removed shadow */
+}
+
+/* Glass theme for history modal - Simplified with Blur Background */
+body.glass-theme .history-modal {
+    background-color: rgba(0, 0, 0, 0.75);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+body.glass-theme .history-content {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0; /* Removed rounded corners */
+    box-shadow: none; /* Removed shadow */
+}
+
+/* Glass theme for history header - Simplified */
+body.glass-theme .history-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0; /* Removed rounded corners */
+}
+
+body.glass-theme .history-header h2 {
+    color: #000000;
+    font-weight: 500; /* Reduced font weight */
+}
+
+/* Glass theme for close button - Simplified */
+body.glass-theme .close-history-btn {
+    color: #000000;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0; /* Removed rounded corners */
+    padding: 4px 8px;
+    transition: none; /* Removed transitions */
+}
+
+body.glass-theme .close-history-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: none; /* Removed transform */
+}
+
+/* Glass theme for history items - Simplified */
+body.glass-theme .history-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: none; /* Removed transitions */
+}
+
+body.glass-theme .history-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 0; /* Removed rounded corners */
+    margin: 0; /* Reset margin */
+    padding: 16px 20px; /* Reset padding */
+}
+
+body.glass-theme .history-item.current-session {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 2px solid #ff0000; /* Red border for current session */
+    border-radius: 0; /* Removed rounded corners */
+    margin-left: 0;
+}
+
+/* Glass theme for history text - Simplified */
+body.glass-theme .history-date {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+body.glass-theme .history-preview {
+    color: #000000;
+    font-weight: 400; /* Reduced font weight */
+}
+
+body.glass-theme .history-info {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+body.glass-theme .no-history {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Glass theme for delete button - Simplified and Red */
+body.glass-theme .delete-chat-btn {
+    background: #ff0000; /* Red background */
+    border-radius: 0; /* Removed rounded corners */
+    color: #ffffff;
+    transition: none; /* Removed transitions */
+}
+
+body.glass-theme .delete-chat-btn:hover {
+    background: #cc0000; /* Darker red on hover */
+    color: #ffffff;
+    transform: none; /* Removed transform */
+    box-shadow: none; /* Removed shadow */
+}
+
+.history-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    padding: 0;
+    overflow: hidden;
+}
+
+.settings-content h2,
+.history-header h2 {
+    margin-top: 0;
+    color: #FFFFFF;
+    font-weight: 500; /* Reduced font weight */
+}
+
+/* History Modal Specific Styles - Simplified */
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #444;
+}
+
+.close-history-btn {
+    background: none;
+    border: none;
+    color: #E0E0E0;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.history-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid #2a2a2a;
+    transition: none; /* Removed transitions */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    border-radius: 0; /* Removed rounded corners */
+    margin: 0;
+}
+
+.history-content {
+    flex: 1;
+    cursor: pointer;
+    min-width: 0; /* Allow text truncation */
+}
+
+.delete-chat-btn {
+    background: #ff0000; /* Red background */
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 0; /* Removed rounded corners */
+    font-size: 14px;
+    transition: none; /* Removed transitions */
+    margin-left: 12px;
+    opacity: 1; /* Always visible */
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-chat-btn img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    transition: none; /* Removed transitions */
+}
+
+.delete-chat-btn:hover {
+    background-color: #cc0000; /* Darker red on hover */
+    color: white;
+    opacity: 1;
+    transform: none; /* Removed transform */
+}
+
+.delete-chat-btn:hover img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+.history-item:hover .delete-chat-btn {
+    opacity: 1;
+}
+
+.history-item:hover {
+    background-color: #2a2a2a;
+}
+
+.history-item.current-session {
+    background-color: #2a2a2a;
+    border-left: 2px solid #ff0000; /* Red border for current session */
+}
+
+.history-date {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 4px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+.history-preview {
+    color: #e1e1e1;
+    margin-bottom: 4px;
+    font-weight: 400; /* Reduced font weight */
+    font-size: 14px;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-info {
+    font-size: 11px;
+    color: #888;
+    font-weight: 400;
+}
+
+.no-history {
+    padding: 40px 20px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+
+.settings-content label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #AAAAAA;
+}
+
+.settings-content input[type="text"],
+.settings-content input[type="url"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #444444;
+    background-color: #333333;
+    color: #E0E0E0;
+}
+
+.settings-content button {
+    background-color: #FDD835;
+    color: #1E1E1E;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+.settings-content button.secondary {
+    background-color: #555555;
+    color: #E0E0E0;
+    margin-left: 10px;
+}
+
+#webhook-list {
+    list-style: none;
+    padding: 0;
+}
+
+#webhook-list li {
+    background-color: #3a3a3a;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#webhook-list .webhook-name {
+    flex-grow: 1;
+}
+
+#webhook-list .default-webhook-star {
+    color: #FDD835;
+    margin-right: 8px;
+}
+
+#webhook-list button {
+    padding: 3px 6px;
+    font-size: 0.8em;
+    margin-top: 0;
+    margin-left: 5px;
+}
+
+.webhook-indicator {
+    background-color: #4CAF50;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.75em;
+    font-weight: 500;
+    margin-right: 8px;
+    margin-left: 8px;
+    display: none;
+    flex-shrink: 0; /* Prevent shrinking */
+    max-width: 40%; /* Allow more space when panel is wide */
+    min-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+}
+
+/* Responsive webhook indicator for different panel sizes */
+/* Very narrow panels - prioritize button visibility */
+@media (max-width: 300px) {
+    .webhook-indicator {
+        max-width: 25%;
+        font-size: 0.65em;
+        padding: 2px 6px;
+        min-width: 40px;
+        margin-right: 4px;
+        margin-left: 4px;
+    }
+}
+
+/* Narrow panels */
+@media (min-width: 301px) and (max-width: 400px) {
+    .webhook-indicator {
+        max-width: 30%;
+        font-size: 0.7em;
+        padding: 3px 8px;
+        min-width: 50px;
+        margin-right: 6px;
+    }
+}
+
+/* Medium panels */
+@media (min-width: 401px) and (max-width: 500px) {
+    .webhook-indicator {
+        max-width: 35%;
+        font-size: 0.75em;
+        padding: 4px 9px;
+        min-width: 60px;
+    }
+}
+
+/* Wide panels */
+@media (min-width: 501px) {
+    .webhook-indicator {
+        max-width: 45%;
+        font-size: 0.8em;
+        padding: 4px 10px;
+        min-width: 80px;
+    }
+}
+
+/* Very wide panels */
+@media (min-width: 700px) {
+    .webhook-indicator {
+        max-width: 50%;
+        font-size: 0.85em;
+    }
+}
+
+
+
+.slash-command-popup {
+    position: absolute;
+    bottom: 65px; /* Adjust based on input area height */
+    left: 60px; /* Adjust based on attach button width */
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.slash-command-popup div {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #E0E0E0;
+}
+
+.slash-command-popup div:hover {
+    background-color: #444;
+}
+
+/* Voice Button Styles */
+.voice-btn {
+    background: #ffd700;
+    border: 1px solid #ffd700;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    margin-left: 4px;
+}
+
+.voice-btn:hover {
+    background: #ffed4e;
+    border-color: #ffed4e;
+    transform: scale(1.05);
+}
+
+.voice-btn.recording {
+    background: #ff4444;
+    border-color: #ff4444;
+    animation: pulse 1.5s infinite;
+}
+
+.voice-btn.processing {
+    background: #FDD835;
+    border-color: #FDD835;
+    animation: spin 1s linear infinite;
+}
+
+.voice-btn svg {
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.voice-btn.recording svg,
+.voice-btn.processing svg {
+    color: white;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Light theme voice button */
+body.light-theme .voice-btn {
+    background: #ffd700;
+    border-color: #ffd700;
+}
+
+body.light-theme .voice-btn:hover {
+    background: #ffed4e;
+    border-color: #ffed4e;
+}
+
+body.light-theme .voice-btn svg {
+    color: #333;
+}
+
+body.light-theme .voice-btn.recording {
+    background: #ff4444;
+    border-color: #ff4444;
+}
+
+body.light-theme .voice-btn.processing {
+    background: #FDD835;
+    border-color: #FDD835;
+}
+
+/* Voice status indicator */
+.voice-status {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    display: none;
+    z-index: 1000;
+}
+
+body.light-theme .voice-status {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333333;
+    border: 1px solid #ddd;
+}
+
+/* Light theme history styles - Clean and minimalist - Simplified */
+body.light-theme .history-item {
+    border-bottom: 1px solid #e8e8e8;
+    background-color: #ffffff;
+}
+
+body.light-theme .history-item:hover {
+    background-color: #f8f9fa;
+}
+
+body.light-theme .history-item.current-session {
+    background-color: #f0f7ff;
+    border-left: 2px solid #ff0000; /* Red border for current session */
+}
+
+body.light-theme .history-date {
+    color: #6c757d;
+}
+
+body.light-theme .history-preview {
+    color: #212529;
+    font-weight: 400; /* Reduced font weight */
+}
+
+body.light-theme .history-info {
+    color: #6c757d;
+}
+
+body.light-theme .delete-chat-btn {
+    background: #ff0000; /* Red background */
+    color: #ffffff;
+}
+
+body.light-theme .delete-chat-btn img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+body.light-theme .delete-chat-btn:hover {
+    background-color: #cc0000; /* Darker red on hover */
+    color: white;
+}
+
+body.light-theme .delete-chat-btn:hover img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+body.light-theme .no-history {
+    color: #6c757d;
+}
+
+/* Light theme modal styles - Clean and minimalist - Simplified */
+body.light-theme .history-modal {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+body.light-theme .history-content {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    box-shadow: none; /* Removed shadow */
+    border-radius: 0; /* Removed rounded corners */
+}
+
+body.light-theme .history-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 0; /* Removed rounded corners */
+}
+
+body.light-theme .history-header h2 {
+    color: #212529;
+    font-weight: 500; /* Reduced font weight */
+}
+
+body.light-theme .close-history-btn {
+    color: #6c757d;
+    background: none;
+    transition: none; /* Removed transitions */
+}
+
+body.light-theme .close-history-btn:hover {
+    color: #495057;
+    background-color: #e9ecef;
+    border-radius: 0; /* Removed rounded corners */
+}
+
+body.light-theme .history-list {
+    background-color: #ffffff;
+}
+
+/* Popup Notification Styles */
+.popup-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    max-width: 250px;
+    word-wrap: break-word;
+    animation: slideIn 0.3s ease-out;
+    transition: opacity 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.popup-notification .notification-message {
+    flex: 1;
+    line-height: 1.4;
+}
+
+.popup-notification .notification-close {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.popup-notification .notification-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.popup-notification .notification-close svg {
+    display: block;
+}
+
+.popup-notification.error {
+    background-color: #ff4444;
+    border-left: 4px solid #cc0000;
+}
+
+.popup-notification.success {
+    background-color: #4CAF50;
+    border-left: 4px solid #2E7D32;
+}
+
+.popup-notification.info {
+    background-color: #2196F3;
+    border-left: 4px solid #1565C0;
+}
+
+.popup-notification.fade-out {
+    opacity: 0;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Light theme popup notifications */
+body.light-theme .popup-notification {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+body.light-theme .popup-notification.error {
+    background-color: #f44336;
+    color: white;
+}
+
+body.light-theme .popup-notification.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+body.light-theme .popup-notification.info {
+    background-color: #2196F3;
+    color: white;
+}
+
+body.light-theme .popup-notification .notification-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+   COMPLETE MINIMALIST DESIGN STYLES
+   ======================================== */
+
+/* Complete Minimalist Base Styles */
+body.complete-minimalist {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    transition: none;
+    animation: none;
+}
+
+body.complete-minimalist.light-theme {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Remove all animations and effects */
+body.complete-minimalist *,
+body.complete-minimalist *::before,
+body.complete-minimalist *::after {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transition: none !important;
+    animation: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-image: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
+/* Chat Container */
+body.complete-minimalist .chat-container {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Chat Header */
+body.complete-minimalist .chat-header {
+    background-color: #000000;
+    border-bottom: 1px solid #333333;
+    padding: 8px 12px;
+    margin: 0;
+}
+
+body.complete-minimalist.light-theme .chat-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #cccccc;
+}
+
+body.complete-minimalist .chat-header h1 {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}
+
+/* Chat Messages */
+body.complete-minimalist .chat-messages {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+body.complete-minimalist .message {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    margin: 0;
+    border-bottom: 1px solid #333333;
+}
+
+body.complete-minimalist.light-theme .message {
+    border-bottom: 1px solid #eeeeee;
+}
+
+body.complete-minimalist .message.user {
+    background-color: #111111;
+}
+
+body.complete-minimalist.light-theme .message.user {
+    background-color: #f8f8f8;
+}
+
+body.complete-minimalist .message.assistant {
+    background-color: #000000;
+}
+
+body.complete-minimalist.light-theme .message.assistant {
+    background-color: #ffffff;
+}
+
+body.complete-minimalist .message-content {
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 300;
+    color: inherit;
+}
+
+body.complete-minimalist .message-content p {
+    margin: 0;
+    padding: 0;
+}
+
+body.complete-minimalist .message-content pre,
+body.complete-minimalist .message-content code {
+    background-color: #222222;
+    color: #ffffff;
+    border: 1px solid #333333;
+    padding: 4px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 12px;
+}
+
+body.complete-minimalist.light-theme .message-content pre,
+body.complete-minimalist.light-theme .message-content code {
+    background-color: #f0f0f0;
+    color: #000000;
+    border: 1px solid #cccccc;
+}
+
+/* Chat Input Area */
+body.complete-minimalist .chat-input-area {
+    background-color: #000000;
+    border-top: 1px solid #333333;
+    padding: 8px 12px;
+    margin: 0;
+}
+
+body.complete-minimalist.light-theme .chat-input-area {
+    background-color: #ffffff;
+    border-top: 1px solid #cccccc;
+}
+
+body.complete-minimalist #chat-input {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 6px 8px;
+    font-size: 13px;
+    font-weight: 300;
+    width: 100%;
+    outline: none;
+}
+
+body.complete-minimalist.light-theme #chat-input {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist #chat-input:focus {
+    border-color: #666666;
+}
+
+body.complete-minimalist.light-theme #chat-input:focus {
+    border-color: #999999;
+}
+
+body.complete-minimalist #chat-input::placeholder {
+    color: #666666;
+    font-weight: 300;
+}
+
+body.complete-minimalist.light-theme #chat-input::placeholder {
+    color: #999999;
+}
+
+/* Buttons */
+body.complete-minimalist .btn,
+body.complete-minimalist button {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+body.complete-minimalist.light-theme .btn,
+body.complete-minimalist.light-theme button {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .btn:hover,
+body.complete-minimalist button:hover {
+    background-color: #111111;
+}
+
+body.complete-minimalist.light-theme .btn:hover,
+body.complete-minimalist.light-theme button:hover {
+    background-color: #f8f8f8;
+}
+
+/* Voice Button */
+body.complete-minimalist .voice-btn {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 6px;
+    width: 32px;
+    height: 32px;
+}
+
+body.complete-minimalist.light-theme .voice-btn {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+/* Settings Button */
+body.complete-minimalist .settings-btn {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px 6px;
+    font-size: 11px;
+}
+
+body.complete-minimalist.light-theme .settings-btn {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+/* History Button */
+body.complete-minimalist .history-btn {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px 6px;
+    font-size: 11px;
+}
+
+body.complete-minimalist.light-theme .history-btn {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+/* History Modal - Complete Minimalist */
+body.complete-minimalist .history-modal {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+body.complete-minimalist.light-theme .history-modal {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+body.complete-minimalist .history-content {
+    background-color: #000000;
+    border: 1px solid #333333;
+    margin: 20px;
+    max-height: calc(100vh - 40px);
+}
+
+body.complete-minimalist.light-theme .history-content {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+
+body.complete-minimalist .history-header {
+    background-color: #000000;
+    border-bottom: 1px solid #333333;
+    padding: 8px 12px;
+}
+
+body.complete-minimalist.light-theme .history-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #cccccc;
+}
+
+body.complete-minimalist .history-header h2 {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    color: inherit;
+}
+
+body.complete-minimalist .close-history-btn {
+    background: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+body.complete-minimalist.light-theme .close-history-btn {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .close-history-btn:hover {
+    background-color: #111111;
+}
+
+body.complete-minimalist.light-theme .close-history-btn:hover {
+    background-color: #f8f8f8;
+}
+
+body.complete-minimalist .history-list {
+    background-color: #000000;
+    padding: 0;
+    margin: 0;
+}
+
+body.complete-minimalist.light-theme .history-list {
+    background-color: #ffffff;
+}
+
+body.complete-minimalist .history-item {
+    background-color: #000000;
+    border-bottom: 1px solid #333333;
+    padding: 8px 12px;
+    margin: 0;
+}
+
+body.complete-minimalist.light-theme .history-item {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+body.complete-minimalist .history-item:hover {
+    background-color: #111111;
+}
+
+body.complete-minimalist.light-theme .history-item:hover {
+    background-color: #f8f8f8;
+}
+
+body.complete-minimalist .history-item.current-session {
+    background-color: #111111;
+    border-left: 2px solid #ffffff;
+}
+
+body.complete-minimalist.light-theme .history-item.current-session {
+    background-color: #f8f8f8;
+    border-left: 2px solid #000000;
+}
+
+body.complete-minimalist .history-date {
+    font-size: 11px;
+    font-weight: 300;
+    color: #666666;
+}
+
+body.complete-minimalist.light-theme .history-date {
+    color: #999999;
+}
+
+body.complete-minimalist .history-preview {
+    font-size: 12px;
+    font-weight: 300;
+    color: inherit;
+    margin: 2px 0 0 0;
+}
+
+body.complete-minimalist .history-info {
+    font-size: 10px;
+    font-weight: 300;
+    color: #666666;
+}
+
+body.complete-minimalist.light-theme .history-info {
+    color: #999999;
+}
+
+body.complete-minimalist .delete-chat-btn {
+    background-color: #ff0000;
+    border: 1px solid #ff0000;
+    color: #ffffff;
+    padding: 2px 4px;
+    font-size: 10px;
+}
+
+body.complete-minimalist .delete-chat-btn:hover {
+    background-color: #cc0000;
+    border-color: #cc0000;
+}
+
+body.complete-minimalist .delete-chat-btn img {
+    filter: brightness(0) saturate(100%) invert(100%);
+}
+
+body.complete-minimalist .no-history {
+    color: #666666;
+    font-size: 12px;
+    font-weight: 300;
+    text-align: center;
+    padding: 20px;
+}
+
+body.complete-minimalist.light-theme .no-history {
+    color: #999999;
+}
+
+/* Popup Notifications - Complete Minimalist */
+body.complete-minimalist .popup-notification {
+    background-color: #000000;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 6px 8px;
+    font-size: 11px;
+    font-weight: 300;
+    top: 10px;
+    right: 10px;
+    max-width: 200px;
+}
+
+body.complete-minimalist.light-theme .popup-notification {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .popup-notification.error {
+    background-color: #ff0000;
+    border-color: #ff0000;
+    color: #ffffff;
+}
+
+body.complete-minimalist .popup-notification.success {
+    background-color: #000000;
+    border-color: #333333;
+    color: #ffffff;
+}
+
+body.complete-minimalist.light-theme .popup-notification.success {
+    background-color: #ffffff;
+    border-color: #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .popup-notification.info {
+    background-color: #000000;
+    border-color: #333333;
+    color: #ffffff;
+}
+
+body.complete-minimalist.light-theme .popup-notification.info {
+    background-color: #ffffff;
+    border-color: #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .popup-notification .notification-close {
+    background: transparent;
+    border: 1px solid #333333;
+    color: inherit;
+    padding: 1px 3px;
+    font-size: 10px;
+}
+
+body.complete-minimalist.light-theme .popup-notification .notification-close {
+    border-color: #cccccc;
+}
+
+body.complete-minimalist .popup-notification .notification-close:hover {
+    background-color: #111111;
+}
+
+body.complete-minimalist.light-theme .popup-notification .notification-close:hover {
+    background-color: #f8f8f8;
+}
+
+/* Typing Indicator - Complete Minimalist */
+body.complete-minimalist .typing-indicator {
+    background-color: #111111;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 300;
+}
+
+body.complete-minimalist.light-theme .typing-indicator {
+    background-color: #f8f8f8;
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+/* Voice Status - Complete Minimalist */
+body.complete-minimalist .voice-status {
+    background-color: #000000;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 300;
+}
+
+body.complete-minimalist.light-theme .voice-status {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+/* Remove background toggle button in minimalist mode */
+body.complete-minimalist .bg-toggle-btn {
+    display: none;
+}
+
+/* Complete Minimalist Chat Interface Styles */
+body.complete-minimalist .container {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+body.complete-minimalist .chat-area {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+body.complete-minimalist .message {
+    background: transparent;
+    border: none;
+    padding: 6px 8px;
+    margin: 0;
+    border-bottom: 1px solid #333333;
+    max-width: 100%;
+    align-items: flex-start;
+}
+
+body.complete-minimalist.light-theme .message {
+    border-bottom: 1px solid #eeeeee;
+}
+
+body.complete-minimalist .message .avatar {
+    width: 16px;
+    height: 16px;
+    margin: 2px 6px 0 0;
+    filter: none;
+}
+
+body.complete-minimalist .message.user-message .avatar {
+    margin: 2px 0 0 6px;
+    order: 1;
+}
+
+body.complete-minimalist .message.assistant-message .avatar {
+    order: -1;
+}
+
+body.complete-minimalist .assistant-message {
+    align-self: stretch;
+}
+
+body.complete-minimalist .user-message {
+    align-self: stretch;
+}
+
+body.complete-minimalist .assistant-message .message-content {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 4px 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+body.complete-minimalist.light-theme .assistant-message .message-content {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.complete-minimalist .user-message .message-content {
+    background-color: #111111;
+    color: #ffffff;
+    padding: 4px 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+body.complete-minimalist.light-theme .user-message .message-content {
+    background-color: #f8f8f8;
+    color: #000000;
+}
+
+/* Minimalist markdown styles */
+body.complete-minimalist .message-content a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+body.complete-minimalist .message-content code {
+    background-color: #222222;
+    color: #ffffff;
+    border: 1px solid #333333;
+    padding: 2px 4px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+body.complete-minimalist.light-theme .message-content code {
+    background-color: #f0f0f0;
+    color: #000000;
+    border: 1px solid #cccccc;
+}
+
+body.complete-minimalist .message-content h1,
+body.complete-minimalist .message-content h2,
+body.complete-minimalist .message-content h3 {
+    margin: 4px 0;
+    font-weight: 400;
+    color: inherit;
+}
+
+body.complete-minimalist .message-content h1 {
+    font-size: 16px;
+}
+
+body.complete-minimalist .message-content h2 {
+    font-size: 15px;
+}
+
+body.complete-minimalist .message-content h3 {
+    font-size: 14px;
+}
+
+body.complete-minimalist .message-content li {
+    margin-left: 16px;
+    font-weight: 300;
+}
+
+body.complete-minimalist .message-content p {
+    margin: 2px 0;
+    font-weight: 300;
+}
+
+/* Minimalist new chat button */
+body.complete-minimalist #new-chat-btn {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 300;
+}
+
+body.complete-minimalist.light-theme #new-chat-btn {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist #new-chat-btn:hover {
+    background-color: #111111;
+}
+
+body.complete-minimalist.light-theme #new-chat-btn:hover {
+    background-color: #f8f8f8;
+}
+
+/* Minimalist attach file button */
+body.complete-minimalist .attach-file-btn {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px;
+    width: 28px;
+    height: 28px;
+}
+
+body.complete-minimalist.light-theme .attach-file-btn {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .attach-file-btn:hover {
+    background-color: #111111;
+}
+
+body.complete-minimalist.light-theme .attach-file-btn:hover {
+    background-color: #f8f8f8;
+}
+
+body.complete-minimalist .attach-file-btn .material-symbols-outlined {
+    font-size: 14px;
+    color: inherit;
+}
+
+/* Minimalist send button */
+body.complete-minimalist .send-btn {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px;
+    width: 28px;
+    height: 28px;
+}
+
+body.complete-minimalist.light-theme .send-btn {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .send-btn:hover {
+    background-color: #111111;
+}
+
+body.complete-minimalist.light-theme .send-btn:hover {
+    background-color: #f8f8f8;
+}
+
+body.complete-minimalist .send-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+/* Minimalist file attachments */
+body.complete-minimalist .attached-files-container {
+    background-color: transparent;
+    border: none;
+    padding: 4px 0;
+    margin: 0;
+}
+
+body.complete-minimalist .file-ticket {
+    background-color: #111111;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px 6px;
+    margin: 2px 0;
+    font-size: 11px;
+    font-weight: 300;
+}
+
+body.complete-minimalist.light-theme .file-ticket {
+    background-color: #f8f8f8;
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .file-ticket:hover {
+    background-color: #222222;
+}
+
+body.complete-minimalist.light-theme .file-ticket:hover {
+    background-color: #eeeeee;
+}
+
+body.complete-minimalist .file-ticket .file-name {
+    font-size: 11px;
+    font-weight: 300;
+    color: inherit;
+}
+
+body.complete-minimalist .file-ticket .file-size {
+    font-size: 10px;
+    font-weight: 300;
+    color: #666666;
+}
+
+body.complete-minimalist.light-theme .file-ticket .file-size {
+    color: #999999;
+}
+
+body.complete-minimalist .file-ticket .remove-file {
+    background: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 1px 3px;
+    font-size: 10px;
+}
+
+body.complete-minimalist.light-theme .file-ticket .remove-file {
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .file-ticket .remove-file:hover {
+    background-color: #ff0000;
+    border-color: #ff0000;
+    color: #ffffff;
+}
+
+/* Minimalist webhook indicator */
+body.complete-minimalist .webhook-indicator {
+    background-color: transparent;
+    border: none;
+    color: #666666;
+    padding: 2px 0;
+    font-size: 10px;
+    font-weight: 300;
+    text-align: left;
+}
+
+body.complete-minimalist.light-theme .webhook-indicator {
+    color: #999999;
+}
+
+/* Minimalist slash command popup */
+body.complete-minimalist .slash-command-popup {
+    background-color: #000000;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 4px;
+    font-size: 11px;
+    font-weight: 300;
+}
+
+body.complete-minimalist.light-theme .slash-command-popup {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    color: #000000;
+}
+
+body.complete-minimalist .slash-command-popup .command-item {
+    background: transparent;
+    border: none;
+    color: inherit;
+    padding: 2px 4px;
+    font-size: 11px;
+    font-weight: 300;
+}
+
+body.complete-minimalist .slash-command-popup .command-item:hover {
+    background-color: #111111;
+}
+
+body.complete-minimalist.light-theme .slash-command-popup .command-item:hover {
+    background-color: #f8f8f8;
+}
+
+/* Minimalist welcome message */
+body.complete-minimalist .welcome-message {
+    background: transparent;
+    border: none;
+    color: #666666;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 300;
+    text-align: center;
+}
+
+body.complete-minimalist.light-theme .welcome-message {
+    color: #999999;
+}
+
+body.complete-minimalist .welcome-message h2 {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 4px 0;
+    color: inherit;
+}
+
+body.complete-minimalist .welcome-message p {
+    font-size: 11px;
+    font-weight: 300;
+    margin: 2px 0;
+    color: inherit;
+}

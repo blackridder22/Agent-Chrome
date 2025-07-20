@@ -1,0 +1,105 @@
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    .grain-overlay {
+      position: relative;
+    }
+    .grain-overlay::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".05"/></svg>');
+      pointer-events: none;
+      z-index: 0;
+    }
+    .content-z-index {
+      z-index: 1;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased">
+<div class="relative flex size-full min-h-screen flex-col bg-gradient-to-br from-[#1C1B14] to-[#100F0A] dark justify-between group/design-root overflow-x-hidden grain-overlay" style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
+<div class="content-z-index">
+<header class="sticky top-0 z-10 bg-gradient-to-b from-[#1C1B14] via-[#1C1B14]/90 to-[#1C1B14]/50 backdrop-blur-sm p-4 pb-3">
+<div class="flex items-center justify-between">
+<div class="flex w-12 items-center justify-start">
+<button aria-label="Settings" class="flex items-center justify-center rounded-full h-10 w-10 hover:bg-white/10 text-white transition-colors duration-150">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+</div>
+<h1 class="text-white text-xl font-bold leading-tight tracking-tight text-center flex-1">Chat</h1>
+<div class="flex w-auto items-center justify-end gap-2">
+<button aria-label="New Conversation" class="flex items-center justify-center rounded-full h-10 px-3 bg-[#f2db0c] text-[#181711] hover:bg-yellow-400 transition-colors duration-150 text-sm font-medium">
+<span class="material-symbols-outlined text-xl mr-1">add</span>
+              New
+            </button>
+</div>
+</div>
+</header>
+<main class="flex-grow overflow-y-auto px-4 pt-4 pb-2 space-y-6">
+<div class="flex items-end gap-2.5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 h-8 shrink-0 border-2 border-[#393728]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDkhlAX4f0n15FJCxJp4eYPw7aq4KQSnKdBUC-H3g0iU080bjZAukiie21PQUyhsLv5CNVXQa5YOHFL6y6X0vavoENmm7A5yJTld_wQ8ZZZ0oCjaIusX49xH64gwBYAfS9UEz0Jc84OuuZitP15kEkMyvjhSqlWZ1fDKZFZejgaAk7A5iFFxIREXvWI6xFTjm1e2t0U6TcGz6EB-X061nKhXS3JepADoVVNnrZ3ody0j_epx6xBY8JZVpjXF39Y7DZ92qpU0qMhQ2U");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start max-w-[80%]">
+<p class="text-[#A09D87] text-xs font-medium">Alex</p>
+<div class="text-base font-normal leading-relaxed rounded-2xl rounded-bl-md px-4 py-2.5 bg-[#2A281E] text-white shadow-sm">
+              Hey there! How can I help you today?
+            </div>
+</div>
+</div>
+<div class="flex items-end gap-2.5 justify-end">
+<div class="flex flex-1 flex-col gap-1 items-end max-w-[80%]">
+<p class="text-[#A09D87] text-xs font-medium text-right">You</p>
+<div class="text-base font-normal leading-relaxed rounded-2xl rounded-br-md px-4 py-2.5 bg-[#f2db0c] text-[#181711] shadow-sm">
+              Hi Alex, I'm looking for some information on the latest updates.
+            </div>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 h-8 shrink-0 border-2 border-[#f2db0c]/50" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB7IKfHjzwt9U2FKhubD7JL-cbkYqbvxvnrLResIMWef10cILitJlTE2wlslZr1CoQ7aWgJPeTLZEG53pZS-wHp0G5I_1yNQCgOyUDd8VZFmXVYQJc4XSk5ugSN5pcbksd8Z6vDnl7VCZSvDU4B_shhjSKCR8GFgSw-pylD2cCfL46ntAj4_b9Q9BUzrJDHIcn0pBP9Rof1OxG3_cV7VtrSyCJ3DB4QjHM62kkDmz-4M5pwbv1qFMVu3kTSlmXCgJsQPej6FfCfz14");'></div>
+</div>
+</main>
+</div>
+<footer class="sticky bottom-0 z-10 bg-gradient-to-t from-[#1C1B14] via-[#1C1B14]/90 to-[#1C1B14]/50 backdrop-blur-sm content-z-index">
+<div class="px-4 py-3 @container">
+<div class="flex items-end gap-2.5">
+<textarea class="form-textarea flex-1 resize-none overflow-hidden rounded-xl text-white bg-[#2A281E] border-[#393728] focus:border-[#f2db0c] focus:ring-1 focus:ring-[#f2db0c] min-h-[48px] max-h-32 placeholder:text-[#A09D87] px-4 py-3 text-base font-normal leading-relaxed" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Type your message..." rows="1"></textarea>
+<button aria-label="Send message" class="flex items-center justify-center rounded-full h-12 w-12 shrink-0 bg-[#f2db0c] text-[#181711] hover:bg-yellow-400 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-[#1C1B14]">
+<span class="material-symbols-outlined text-2xl">send</span>
+</button>
+<button aria-label="Add file" class="flex items-center justify-center rounded-full h-12 w-12 shrink-0 bg-[#2A281E] text-[#A09D87] hover:bg-[#393728] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#393728] focus:ring-offset-2 focus:ring-offset-[#1C1B14]">
+<span class="material-symbols-outlined text-2xl">add_circle</span>
+</button>
+</div>
+</div>
+<div class="h-safe-area-bottom bg-transparent"></div>
+</footer>
+</div>
+
+</body></html>
