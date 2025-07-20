@@ -168,6 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         addMessageToChat(displayMessage, 'user');
         chatInput.value = '';
+        
+        // Clear attached files immediately after sending the message
+        clearAttachedFiles();
+        
         showLoadingIndicator(true);
 
         try {
@@ -226,9 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 addMessageToChat('Received an empty or invalid response from the webhook.', 'assistant');
                 console.warn('Invalid response structure:', responseData);
             }
-
-            // Clear attached files after successful send
-            clearAttachedFiles();
 
         } catch (error) {
             showLoadingIndicator(false);
