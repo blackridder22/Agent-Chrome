@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Mozilla Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&family=Lato:wght@300;400;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Agent Mozilla Settings</h1>
+
+        <section class="settings-section">
+            <h2>Manage Webhooks</h2>
+            <div id="webhook-list-container">
+                <ul id="webhook-list">
+                    <!-- Webhooks will be listed here by options.js -->
+                </ul>
+            </div>
+
+            <div class="add-webhook-form">
+                <h3>Add New Webhook</h3>
+                <label for="webhook-name">Name:</label>
+                <input type="text" id="webhook-name" placeholder="e.g., My Assistant">
+                
+                <label for="webhook-url">URL:</label>
+                <input type="url" id="webhook-url" placeholder="https://your-webhook-url.com/api">
+                
+                <button id="add-webhook-btn">Add Webhook</button>
+            </div>
+        </section>
+
+        <section class="settings-section">
+            <h2>Design Style</h2>
+            <select id="design-style-select" aria-label="Select design style">
+                <option value="minimalist">Complete Minimalist</option>
+                <option value="modern">Modern Well-Designed</option>
+            </select>
+        </section>
+
+        <section class="settings-section">
+            <h2>Theme</h2>
+            <select id="theme-select" aria-label="Select theme">
+                <option value="dark">Dark Mode</option>
+                <option value="light">Light Mode</option>
+                <option value="glass">Glass (Blur)</option>
+            </select>
+        </section>
+
+        <section class="settings-section" id="background-animation-section" style="display: none;">
+            <h2>Background Animation</h2>
+            <label for="bg-animation-select">Background Effects (Glass theme only):</label>
+            <select id="bg-animation-select">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select>
+        </section>
+
+        <section class="settings-section">
+            <h2>Font Family</h2>
+            <select id="font-select" aria-label="Select font family">
+                <option value="system">System Default</option>
+                <option value="inter">Inter</option>
+                <option value="roboto">Roboto</option>
+                <option value="poppins">Poppins</option>
+                <option value="source-sans">Source Sans Pro</option>
+                <option value="open-sans">Open Sans</option>
+                <option value="lato">Lato</option>
+                <option value="nunito">Nunito</option>
+            </select>
+        </section>
+
+        <section class="settings-section">
+            <h2>Text Size</h2>
+            <select id="text-size-select" aria-label="Select text size">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+        </section>
+
+        <section class="settings-section">
+            <h2>Voice Language</h2>
+            <select id="voice-language-select" aria-label="Select voice language">
+                <option value="auto">Auto-detect</option>
+                <option value="en-US">English (US)</option>
+                <option value="en-GB">English (UK)</option>
+                <option value="fr-FR">Français (France)</option>
+                <option value="es-ES">Español (Spain)</option>
+                <option value="de-DE">Deutsch (Germany)</option>
+                <option value="it-IT">Italiano (Italy)</option>
+                <option value="pt-BR">Português (Brazil)</option>
+                <option value="ja-JP">日本語 (Japan)</option>
+                <option value="ko-KR">한국어 (Korea)</option>
+                <option value="zh-CN">中文 (China)</option>
+                <option value="ru-RU">Русский (Russia)</option>
+            </select>
+        </section>
+
+        <button id="save-settings-btn">Save All Settings</button>
+        <p id="status-message"></p>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>

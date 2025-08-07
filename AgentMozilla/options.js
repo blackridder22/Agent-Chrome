@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedFont = fontSelect.value;
         const selectedVoiceLanguage = voiceLanguageSelect.value;
         const animatedBackground = bgAnimationSelect.value === 'on';
-        chrome.storage.sync.set({
+        browser.storage.sync.set({
             webhooks: webhooks,
             defaultWebhookName: defaultWebhookName,
             designStyle: selectedDesignStyle,
@@ -199,14 +199,14 @@ document.addEventListener('DOMContentLoaded', () => {
             fontFamily: selectedFont,
             voiceLanguage: selectedVoiceLanguage,
             animatedBackground: animatedBackground
-        }, () => {
+        }).then(() => {
             displayStatus('Settings saved successfully!', false);
             console.log('Settings saved:', { webhooks, defaultWebhookName, designStyle: selectedDesignStyle, theme: selectedTheme, textSize: selectedTextSize, fontFamily: selectedFont, voiceLanguage: selectedVoiceLanguage });
         });
     });
 
     function loadSettings() {
-        chrome.storage.sync.get(['webhooks', 'defaultWebhookName', 'designStyle', 'theme', 'textSize', 'fontFamily', 'voiceLanguage', 'animatedBackground'], (result) => {
+        browser.storage.sync.get(['webhooks', 'defaultWebhookName', 'designStyle', 'theme', 'textSize', 'fontFamily', 'voiceLanguage', 'animatedBackground']).then((result) => {
             if (result.webhooks) {
                 webhooks = result.webhooks;
             }

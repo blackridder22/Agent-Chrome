@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Mozilla Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&family=Lato:wght@300;400;700&family=Nunito:wght@300;400;600;700&family=Lexend:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Poiret+One&family=Gabarito:wght@300;400;500;600;700&family=Fugaz+One&family=Playwrite+VN:wght@300;400;500;600;700&family=Caveat:wght@300;400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sidebar.css">
+</head>
+<body style="visibility: hidden;">
+    <div class="container">
+        <header class="chat-header">
+            <div>
+                <button id="settings-btn" class="icon-btn">
+                    <img src="icons/settings-icon.svg" alt="Settings">
+                </button>
+                <button id="history-btn" class="icon-btn">
+                    <img src="icons/history-icon.svg" alt="History">
+                </button>
+            </div>
+            <h1>Agent Mozilla</h1>
+            <button id="new-chat-btn">+ New</button>
+        </header>
+
+        <main class="chat-area" id="chat-area">
+            <!-- Chat messages will be appended here -->
+        </main>
+
+        <footer class="chat-input-area">
+            <button id="attach-file-btn" class="attach-file-btn" title="Add file">
+                <span class="material-symbols-outlined text-2xl">add_circle</span>
+            </button>
+            <textarea id="chat-input" placeholder="Type your message..." rows="1"></textarea>
+            <button id="voice-btn" class="voice-btn" title="Voice input">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <path d="M12 19v4"/>
+                    <path d="M8 23h8"/>
+                </svg>
+            </button>
+            <button id="send-btn" class="send-btn" title="Send message">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 2L11 13"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+                </svg>
+            </button>
+        </footer>
+        <div id="voice-status" class="voice-status"></div>
+    </div>
+    <script src="sidebar.js"></script>
+</body>
+</html>

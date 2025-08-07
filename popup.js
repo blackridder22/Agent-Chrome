@@ -169,6 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
         addMessageToChat(displayMessage, 'user');
         chatInput.value = '';
         
+        // Create a copy of attached files before clearing the UI
+        const filesToSend = [...attachedFiles];
+        
         // Clear attached files immediately after sending the message
         clearAttachedFiles();
         
@@ -179,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const payload = {
                 sessionId: sessionId,
                 chatInput: messageText,
-                files: attachedFiles.map(file => ({
+                files: filesToSend.map(file => ({
                     name: file.name,
                     size: file.size,
                     type: file.type,
@@ -190,10 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // Enhanced debugging for file data
-            if (attachedFiles.length > 0) {
+            if (filesToSend.length > 0) {
                 console.log(`=== FILE ATTACHMENT DEBUG ===`);
-                console.log(`Number of files: ${attachedFiles.length}`);
-                attachedFiles.forEach((file, index) => {
+                console.log(`Number of files: ${filesToSend.length}`);
+                filesToSend.forEach((file, index) => {
                     console.log(`File ${index + 1}:`);
                     console.log(`  Name: ${file.name}`);
                     console.log(`  Size: ${file.size} bytes`);
@@ -206,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(`=== END FILE DEBUG ===`);
             }
 
-            console.log(`Sending message with ${attachedFiles.length} files, total payload size: ${JSON.stringify(payload).length} bytes`);
+            console.log(`Sending message with ${filesToSend.length} files, total payload size: ${JSON.stringify(payload).length} bytes`);
 
             const response = await fetch(currentWebhookUrl, {
                 method: 'POST',
