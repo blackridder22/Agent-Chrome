@@ -1,0 +1,1089 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "`hi`",
+        "options": {
+          "allowFileUploads": true,
+          "inputPlaceholder": "Type your question..",
+          "loadPreviousSession": "memory",
+          "subtitle": "",
+          "title": "",
+          "customCss": ":root {\n  /* Dark Mode Colors */\n  --chat--color-primary: #e74266;\n  --chat--color-primary-shade-50: #db4061;\n  --chat--color-primary-shade-100: #cf3c5c;\n  --chat--color-secondary: #20b69e;\n  --chat--color-secondary-shade-50: #1ca08a;\n  --chat--color-secondary-shade-100: #178a77;\n  --chat--color-white: #ffffff;\n  --chat--color-light: #1e1e2d;\n  --chat--color-light-shade-50: #252538;\n  --chat--color-light-shade-100: #2d2d42;\n  --chat--color-medium: #3a3a4e;\n  --chat--color-dark: #0d0e1a;\n  --chat--color-disabled: #5a5a6e;\n  --chat--color-typing: #a0a0b0;\n\n  /* Base Layout */\n  --chat--spacing: 1rem;\n  --chat--border-radius: 0.5rem;\n  --chat--transition-duration: 0.2s;\n  --chat--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;\n\n  /* Window Dimensions */\n  --chat--window--width: 400px;\n  --chat--window--height: 600px;\n  --chat--window--bottom: var(--chat--spacing);\n  --chat--window--right: var(--chat--spacing);\n  --chat--window--z-index: 9999;\n  --chat--window--border: 1px solid var(--chat--color-light-shade-100);\n  --chat--window--border-radius: calc(var(--chat--border-radius) * 1.5);\n  --chat--window--margin-bottom: var(--chat--spacing);\n  --chat--window--box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);\n\n  /* Header Styles */\n  --chat--header-height: auto;\n  --chat--header--padding: var(--chat--spacing);\n  --chat--header--background: var(--chat--color-dark);\n  --chat--header--color: var(--chat--color-white);\n  --chat--header--border-bottom: 1px solid var(--chat--color-light-shade-100);\n  --chat--heading--font-size: 1.5em;\n  --chat--heading--font-weight: 600;\n  --chat--subtitle--font-size: 0.9em;\n  --chat--subtitle--color: var(--chat--color-medium);\n  --chat--subtitle--line-height: 1.5;\n\n  /* Message Styles */\n  --chat--message--font-size: 0.95rem;\n  --chat--message--padding: 0.75rem 1rem;\n  --chat--message--border-radius: var(--chat--border-radius);\n  --chat--message-line-height: 1.6;\n  --chat--message--margin-bottom: 0.75rem;\n  --chat--message--bot--background: var(--chat--color-light-shade-50);\n  --chat--message--bot--color: var(--chat--color-white);\n  --chat--message--bot--border: none;\n  --chat--message--user--background: var(--chat--color-secondary);\n  --chat--message--user--color: var(--chat--color-white);\n  --chat--message--user--border: none;\n  --chat--message--pre--background: rgba(255, 255, 255, 0.08);\n  --chat--message--pre--color: #d0d0e0;\n  --chat--messages-list--padding: var(--chat--spacing);\n  --chat--message--box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n\n  /* Toggle Button */\n  --chat--toggle--size: 60px;\n  --chat--toggle--width: var(--chat--toggle--size);\n  --chat--toggle--height: var(--chat--toggle--size);\n  --chat--toggle--border-radius: 50%;\n  --chat--toggle--background: var(--chat--color-primary);\n  --chat--toggle--hover--background: var(--chat--color-primary-shade-50);\n  --chat--toggle--active--background: var(--chat--color-primary-shade-100);\n  --chat--toggle--color: var(--chat--color-white);\n  --chat--toggle--box-shadow: 0 4px 12px rgba(231, 66, 102, 0.3);\n\n  /* Input Area */\n  --chat--textarea--height: 50px;\n  --chat--textarea--max-height: 30rem;\n  --chat--input--font-size: 0.95rem;\n  --chat--input--border: 1px solid var(--chat--color-light-shade-100);\n  --chat--input--border-radius: var(--chat--border-radius);\n  --chat--input--padding: 0.8rem 1rem;\n  --chat--input--background: var(--chat--color-light-shade-50);\n  --chat--input--text-color: var(--chat--color-white);\n  --chat--input--line-height: 1.5;\n  --chat--input--placeholder--color: var(--chat--color-disabled);\n  --chat--input--placeholder--font-size: var(--chat--input--font-size);\n  --chat--input--border-active: 1px solid var(--chat--color-primary);\n  --chat--input--left--panel--width: 2.5rem;\n\n  /* Button Styles */\n  --chat--button--color: var(--chat--color-white);\n  --chat--button--background: var(--chat--color-primary);\n  --chat--button--padding: 0.6rem 1.2rem;\n  --chat--button--border-radius: var(--chat--border-radius);\n  --chat--button--hover--color: var(--chat--color-white);\n  --chat--button--hover--background: var(--chat--color-primary-shade-50);\n  --chat--button--transition: all var(--chat--transition-duration) ease;\n  --chat--close--button--color-hover: var(--chat--color-primary);\n\n  /* Send and File Buttons */\n  --chat--input--send--button--background: var(--chat--color-primary);\n  --chat--input--send--button--color: var(--chat--color-white);\n  --chat--input--send--button--background-hover: var(--chat--color-primary-shade-50);\n  --chat--input--send--button--color-hover: var(--chat--color-white);\n  --chat--input--file--button--background: transparent;\n  --chat--input--file--button--color: var(--chat--color-secondary);\n  --chat--input--file--button--background-hover: var(--chat--color-light-shade-100);\n  --chat--input--file--button--color-hover: var(--chat--color-secondary-shade-50);\n  --chat--files-spacing: 0.5rem;\n\n  /* Body and Footer */\n  --chat--body--background: var(--chat--color-light);\n  --chat--footer--background: var(--chat--color-light-shade-50);\n  --chat--footer--color: var(--chat--color-white);\n  --chat--footer--border-top: 1px solid var(--chat--color-light-shade-100);\n}\n\n/* Additional Dark Mode Enhancements */\n.chat-message {\n  max-width: 80%;\n  transition: transform 0.2s ease, opacity 0.2s ease;\n}\n\n.chat-message-bot {\n  border-bottom-left-radius: 0.25rem !important;\n}\n\n.chat-message-user {\n  border-bottom-right-radius: 0.25rem !important;\n  margin-left: auto;\n}\n\n.chat-messages {\n  background-color: var(--chat--color-light) !important;\n  background-image: radial-gradient(circle at 1px 1px, var(--chat--color-light-shade-100) 1px, transparent 0);\n  background-size: 10px 10px;\n}\n\n.chat-footer {\n  backdrop-filter: blur(8px);\n}\n\n.chat-toggle {\n  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;\n}\n\n.chat-toggle:hover {\n  transform: scale(1.1);\n}",
+          "responseMode": "responseNode"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -2160,
+        -344
+      ],
+      "id": "66be1517-8518-4c8f-b37c-5d2ccad6c3b0",
+      "name": "When chat message received",
+      "webhookId": "42a712a7-2ccd-4675-964e-fe0f878e95ae"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.extractedFile?.length && $json.extractedFile.filter((f) => Object.keys(f)?.length > 0).length > 0 ? \"List of File content(s): \\n \" + JSON.stringify($json.extractedFile.filter((f) => Object.keys(f)?.length > 0)) : '' }}\n\n{{ $('Webhook parse').item.json.Query }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=",
+          "maxIterations": 45,
+          "passthroughBinaryImages": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -640,
+        -588
+      ],
+      "id": "1a3b9d24-2b30-4229-b45f-ad994a945212",
+      "name": "AI Agent",
+      "retryOnFail": true,
+      "maxTries": 5
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        -364
+      ],
+      "id": "46c5f611-b5b7-4317-adac-a2f9d0bc1364",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "03LnBmk8TV37JqAx",
+          "name": "blackridder22"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "chatInput"
+            },
+            {
+              "name": "sessionId"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -2072,
+        -640
+      ],
+      "id": "bd7bc1d5-25b1-4bfb-8f6e-3588750b962e",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5d6c9e09-76e6-4282-93d8-b9516d79ee8c",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -2072,
+        -832
+      ],
+      "id": "2571420c-f893-4017-bf1e-4cc930f452d9",
+      "name": "Webhook",
+      "webhookId": "5d6c9e09-76e6-4282-93d8-b9516d79ee8c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d264444f-c01a-4fa0-86a4-c0bf0e4c8537",
+              "name": "output",
+              "value": "={{ $json.output || $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -240,
+        -588
+      ],
+      "id": "1e8dd191-00ac-497e-ab5b-d73553191d75",
+      "name": "Edit Fields (Set Output Field)"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        -16,
+        -588
+      ],
+      "id": "78cdaf1f-6aaa-4aed-abd1-c083c4037035",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data",
+        "options": {
+          "fileName": "={{ $json.name }}",
+          "mimeType": "={{ $json.type }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -2448
+      ],
+      "id": "6bd0c752-b14a-4c67-a900-0b955c313346",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {
+          "fileName": "={{ $json.name }}",
+          "mimeType": "={{ $json.type }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -2256
+      ],
+      "id": "c8a6ce3b-46ac-49a7-83d4-10a91973c6e7",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {
+          "fileName": "={{ $json.name }}",
+          "mimeType": "={{ $json.type }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -2064
+      ],
+      "id": "d568f851-4607-4f45-af2b-833aad2fd094",
+      "name": "Convert to File2"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {
+          "fileName": "={{ $json.name }}",
+          "mimeType": "={{ $json.type }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -1872
+      ],
+      "id": "c71c185b-97ee-4f7e-95d9-6a45122e6716",
+      "name": "Convert to File3"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {
+          "fileName": "={{ $json.name }}",
+          "mimeType": "={{ $json.type }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -1680
+      ],
+      "id": "971e3fc2-4b26-4a2d-9715-b29ec34a1478",
+      "name": "Convert to File4"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {
+          "fileName": "={{ $json.name }}",
+          "mimeType": "={{ $json.type }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -1488
+      ],
+      "id": "2d521dcd-7fbf-4770-bd20-df912b4e08a2",
+      "name": "Convert to File5"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {
+          "fileName": "={{ $json.name }}",
+          "mimeType": "={{ $json.type }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -1296
+      ],
+      "id": "b0c818a3-3780-49e7-b193-2d06e798e9c8",
+      "name": "Convert to File7"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data",
+        "binaryPropertyName": "base64DataUrlBinary",
+        "options": {
+          "fileName": "={{ $json.name }}",
+          "mimeType": "={{ $json.type }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -1104
+      ],
+      "id": "9fed205c-fb62-43cd-a07b-8f4ff599f9d7",
+      "name": "Convert to File8"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "base64DataBinary",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -552,
+        -1652
+      ],
+      "id": "1a6f936b-b3f3-4d0f-b5af-b3a2f1e0093c",
+      "name": "Extract from File2"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -552,
+        -1460
+      ],
+      "id": "3d589345-f951-47d7-9487-c5b603a7b0b5",
+      "name": "Extract from File3"
+    },
+    {
+      "parameters": {
+        "operation": "xml",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -552,
+        -1268
+      ],
+      "id": "483d7c37-d96f-44eb-b55b-cfcf1befb6e9",
+      "name": "Extract from File4"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -552,
+        -1076
+      ],
+      "id": "25b1086c-2f15-4921-aecc-ca95096ce5a5",
+      "name": "Extract from File6"
+    },
+    {
+      "parameters": {
+        "operation": "rtf",
+        "binaryPropertyName": "base64DataUrlBinary",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -552,
+        -884
+      ],
+      "id": "33e08920-496f-4193-9903-18683415f7ee",
+      "name": "Extract from File7"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -552,
+        -1844
+      ],
+      "id": "31204f8d-0f75-46aa-9dd7-182e15e677cb",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1312,
+        -588
+      ],
+      "id": "e2719c0e-6add-4a2a-ac6f-2002be85f237",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "extractedFile",
+        "options": {
+          "includeBinaries": true
+        }
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -864,
+        -780
+      ],
+      "id": "8331de48-9461-4754-9142-9283e1385bb4",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "files",
+        "options": {
+          "includeBinary": true
+        }
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -1536,
+        -588
+      ],
+      "id": "3c023689-8320-4b3c-bee0-73ef56277e61",
+      "name": "Split Out",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b3784277-1746-477a-b78e-2ca303df8423",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "={{ [\n  \"image/jpeg\",\n  \"image/png\",\n  \"image/webp\",\n  \"image/jpg\"\n].includes($json.type) ? $json.type : 'Erreur: MIME type image non supporté' }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Image"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "58cd09cb-2657-41b0-86c1-7c9b8f499e90",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "={{ [\n  \"text/plain\",\n  \"text/markdown\",\n  \"text/html\",\n  \"text/css\",\n  \"text/javascript\",\n  \"text/yaml\",\n  \"text/xml\",\n  \"text/csv\",\n  \"text/tab-separated-values\",\n  \"text/x-python\",\n  \"text/x-shellscript\",\n  \"text/x-c\",\n  \"text/x-c++\",\n  \"text/x-java-source\"\n].includes($json.type) ? $json.type : 'Erreur: MIME type non supporté (text)' }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Plain Text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1e0475d6-3c04-42d1-a758-b1a79ade7962",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "application/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PDF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e5d9cde7-d9ff-4a2d-ba99-69b4e3b73521",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "text/csv",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "CSV"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7ab50ace-fa94-4b7d-a255-2804994c454a",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "application/json",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "JSON"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b62c9ad6-b076-4e6c-83d1-092770fef004",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "^(application|text)/xml$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "XML"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ce3cce8a-f092-449f-8d56-931fb2bccced",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "/^(application\\/vnd\\.ms-excel|application\\/vnd\\.openxmlformats-officedocument\\.spreadsheetml\\.sheet)$/",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "XLS, XLSX"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "78650dec-861f-4fcb-83a1-a9d80b61628f",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "application/rtf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "RTF"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1088,
+        -1956
+      ],
+      "id": "9021fbc6-8308-4813-adf8-c591a1748db4",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "base64DataBinary",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -552,
+        -2036
+      ],
+      "id": "c4ea2902-c687-437c-a02a-79271665fd6b",
+      "name": "Extract from File5",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7971b72d-811c-4efa-acf8-a3868c54952c",
+              "name": "=Query",
+              "value": "={{ $json.body.chatInput }}",
+              "type": "string"
+            },
+            {
+              "id": "9295a94b-a6b5-45a1-8251-561cc907c93c",
+              "name": "ID",
+              "value": "={{ $json.body.sessionId }}",
+              "type": "string"
+            },
+            {
+              "id": "9d2301ee-1bc5-4574-ae2e-14f2e86cb7b6",
+              "name": "files",
+              "value": "={{ $json.body.files }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1760,
+        -588
+      ],
+      "id": "c5c374f4-9923-4b7d-af65-f2b57865c1e6",
+      "name": "Webhook parse"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -2064,
+        -120
+      ],
+      "id": "91bb5d76-625e-4b8b-a882-bcbfc1234f77",
+      "name": "Simple Memory"
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Webhook parse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields (Set Output Field)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Webhook parse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Webhook parse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields (Set Output Field)": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Extract from File5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File2": {
+      "main": [
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File3": {
+      "main": [
+        [
+          {
+            "node": "Extract from File2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File4": {
+      "main": [
+        [
+          {
+            "node": "Extract from File3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File5": {
+      "main": [
+        [
+          {
+            "node": "Extract from File4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File7": {
+      "main": [
+        [
+          {
+            "node": "Extract from File6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File8": {
+      "main": [
+        [
+          {
+            "node": "Extract from File7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File4": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File6": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File7": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to File2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to File3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to File4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to File5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to File7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to File8",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook parse": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "When chat message received",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "58b1b6a89673c3bad369f29f6c355af95d72d1dd216e92de6c51b3cd763b729b"
+  }
+}
