@@ -170,4 +170,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with ❤️ by the blackridder22 and Claude 4 Sonnet and Gemini 2.5 Pro**
+**Made with ❤️ by blackridder22 and Claude 4 Sonnet and Gemini 2.5 Pro**
