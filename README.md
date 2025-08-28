@@ -115,7 +115,7 @@ For detailed information, check out our comprehensive documentation:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/agent-chrome-extension.git
+   https://github.com/blackridder22/Agent-Chrome.git
    cd agent-chrome-extension
    ```
 
